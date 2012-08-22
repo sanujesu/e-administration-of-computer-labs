@@ -1,0 +1,4 @@
+-manage profile : Admin
+-update status	: Admin, HOD(use)
+-log out
+
