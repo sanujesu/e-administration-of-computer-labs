@@ -2,3 +2,6 @@
 -update status	: Admin, HOD(use)
 -log out
 
+--ngoc--
+- assign complaint la do he thong hay admin
+- keep track of labs  & check report : check report la` chuc nang nho trong keep track of labs
