@@ -1308,7 +1308,7 @@
             <layout ax="647" ay="50" awidth="86" aheight="500" x="647" y="50" width="86" height="500" />
           </item>
           <item id="mdip438600636877452904_667789661933623126" iid="f838409f7bf14b5a85b74884369c8232" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:23" order-index="3" type="sequence-action">
-            <layout x1="85" y1="151" x2="387" y2="151" ax="85" ay="136" awidth="302" aheight="20" x="85" y="136" width="307" height="20" message-x="2" message-y="-10" />
+            <layout x1="85" y1="151" x2="387" y2="151" ax="85" ay="136" awidth="302" aheight="20" x="85" y="136" width="302" height="20" message-x="2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_556032123928045991" to="mdip438600636877452904_270403515147145716" />
           </item>
           <item id="mdip438600636877452904_556032123928045991" iid="a6d624a1b4b741a3a2a59cc1a6d3c9b7" container="mdip438600636877452904_539131255140660100" container-iid="dd955556620a43f0b06385c2c11e712a" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="4" type="entity">
@@ -1318,26 +1318,26 @@
             <layout ax="387" ay="130" awidth="20" aheight="276" x="387" y="130" width="20" height="276" />
           </item>
           <item id="mdip438600636877452904_411397864129894226" iid="772704a1c2054a6e8eb2ce1f6b53c160" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:25" order-index="6" type="sequence-action">
-            <layout x1="407" y1="155" x2="680" y2="155" ax="407" ay="140" awidth="273" aheight="20" x="412" y="140" width="244" height="20" message-x="0" message-y="-10" />
+            <layout x1="407" y1="155" x2="680" y2="155" ax="407" ay="140" awidth="273" aheight="20" x="407" y="140" width="273" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_270403515147145716" to="mdip438600636877452904_987493877934436855" />
           </item>
           <item id="mdip438600636877452904_987493877934436855" iid="58ee8b09e1734bb58909235829cb4997" container="mdip438600636877452904_123973445490317459" container-iid="36de4c9ff5664e298142150dd9a60972" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:27" order-index="7" type="entity">
             <layout ax="680" ay="134" awidth="20" aheight="284" x="680" y="134" width="20" height="284" />
           </item>
           <item id="mdip438600636877452904_265098430810347128" iid="099d16e63c174ba89a10ee8afb18041e" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:12" order-index="8" type="sequence-action">
-            <layout x1="680" y1="204" x2="407" y2="204" ax="407" ay="189" awidth="273" aheight="20" x="412" y="189" width="244" height="20" message-x="0" message-y="-10" />
+            <layout x1="680" y1="204" x2="407" y2="204" ax="407" ay="189" awidth="273" aheight="20" x="407" y="189" width="273" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_987493877934436855" to="mdip438600636877452904_270403515147145716" />
           </item>
           <item id="mdip438600636877452904_442944340487840421" iid="14be51cc633f45bbbd51ed80083e3c81" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:31" order-index="9" type="sequence-action">
-            <layout x1="387" y1="232" x2="85" y2="232" ax="85" ay="217" awidth="302" aheight="20" x="85" y="217" width="307" height="20" message-x="2" message-y="-10" />
+            <layout x1="387" y1="232" x2="85" y2="232" ax="85" ay="217" awidth="302" aheight="20" x="85" y="217" width="302" height="20" message-x="2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_270403515147145716" to="mdip438600636877452904_556032123928045991" />
           </item>
           <item id="mdip438600636877452904_639671468486586830" iid="b8d9fa8a29dd4d5a99668553f3d01fba" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:55" order-index="10" type="sequence-action">
-            <layout x1="85" y1="276" x2="387" y2="276" ax="85" ay="261" awidth="302" aheight="20" x="85" y="261" width="307" height="20" message-x="0" message-y="-10" />
+            <layout x1="85" y1="276" x2="387" y2="276" ax="85" ay="261" awidth="302" aheight="20" x="85" y="261" width="302" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_556032123928045991" to="mdip438600636877452904_270403515147145716" />
           </item>
           <item id="mdip438600636877452904_229417957554512184" iid="21a48e17809e46b9a46945bd713bb33d" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:17:59" order-index="11" type="sequence-action">
-            <layout x1="407" y1="295" x2="680" y2="295" ax="407" ay="280" awidth="273" aheight="20" x="412" y="280" width="244" height="20" message-x="0" message-y="-10" />
+            <layout x1="407" y1="295" x2="680" y2="295" ax="407" ay="280" awidth="273" aheight="20" x="407" y="280" width="273" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_270403515147145716" to="mdip438600636877452904_987493877934436855" />
           </item>
           <item id="ddip764050955783741768_997978958452671148" iid="834f1ee5b9e544bda56c6124ac12a1c4" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:26:11" order-index="14" type="sequence-action">
@@ -1383,14 +1383,14 @@
             <layout ax="662" ay="50" awidth="86" aheight="500" x="662" y="50" width="86" height="500" />
           </item>
           <item id="mdip438600636877452904_641731745116286553" iid="eaa84067e03c428fa8afb93aa2da258f" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:23" order-index="3" type="sequence-action">
-            <layout x1="123" y1="143" x2="437" y2="143" ax="123" ay="128" awidth="314" aheight="20" x="122" y="128" width="315" height="20" message-x="-2" message-y="-9" />
+            <layout x1="123" y1="143" x2="437" y2="143" ax="123" ay="128" awidth="314" aheight="20" x="123" y="128" width="314" height="20" message-x="-2" message-y="-9" />
             <sequence-action from="mdip438600636877452904_810111716754679097" to="mdip438600636877452904_843865284525132536" />
           </item>
           <item id="mdip438600636877452904_810111716754679097" iid="d072d54a5a63491bb04011325a148391" container="mdip438600636877452904_449523362405738291" container-iid="6acdae6098284a63b6780bb403d6f94c" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="4" type="entity">
-            <layout ax="103" ay="130" awidth="20" aheight="232" x="103" y="130" width="20" height="201" />
+            <layout ax="103" ay="130" awidth="20" aheight="201" x="103" y="130" width="20" height="201" />
           </item>
           <item id="mdip438600636877452904_843865284525132536" iid="4f311f244c52431b975dec7972d462e7" container="mdip438600636877452904_938329689371144803" container-iid="04e0cde16c2e4be19a59f5e3b5dc6652" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="5" type="entity">
-            <layout ax="437.5" ay="130" awidth="20" aheight="232" x="437.5" y="130" width="20" height="119" />
+            <layout ax="437.5" ay="130" awidth="20" aheight="119" x="437.5" y="130" width="20" height="119" />
           </item>
           <item id="mdip438600636877452904_477486874845067905" iid="016706ccc0ba4536abd9599af2b120a3" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:25" order-index="6" type="sequence-action">
             <layout x1="457" y1="155" x2="695" y2="155" ax="457" ay="140" awidth="238" aheight="20" x="457" y="140" width="238" height="20" message-x="0" message-y="-10" />
@@ -1404,7 +1404,7 @@
             <sequence-action from="mdip438600636877452904_970006517928543452" to="mdip438600636877452904_843865284525132536" />
           </item>
           <item id="mdip438600636877452904_216419822239818611" iid="c0fa5ab078e3470b9e00b6c00ff1c7f6" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:31" order-index="9" type="sequence-action">
-            <layout x1="437" y1="232" x2="123" y2="232" ax="123" ay="217" awidth="314" aheight="20" x="122" y="217" width="315" height="20" message-x="-2" message-y="-10" />
+            <layout x1="437" y1="232" x2="123" y2="232" ax="123" ay="217" awidth="314" aheight="20" x="123" y="217" width="314" height="20" message-x="-2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_843865284525132536" to="mdip438600636877452904_810111716754679097" />
           </item>
           <item id="ddip172178797619551675_610735798414054109" iid="1c822c6e24cd455092bf00bb84875506" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:28:44" order-index="14" type="sequence-action">
@@ -1438,7 +1438,7 @@
             <style class="default" />
             <sequence-action type="call" message="Update status for resource" is-asynchronous="false" />
           </item>
-          <item id="ddip750464162603199127_590248197910835217" cid="ELEM002" type="found-message" name="FoundMessage2" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="08/26/2012 22:34:13">
+          <item id="ddip750464162603199127_590248197910835217" cid="ELEM002" type="found-message" name="FoundMessage2" style-class="default" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creation-date="08/26/2012 22:34:13">
             <stereotypes />
             <tagged-values />
             <associated-diagrams />
@@ -1458,7 +1458,7 @@
             <layout ax="647" ay="50" awidth="86" aheight="500" x="647" y="50" width="86" height="500" />
           </item>
           <item id="mdip438600636877452904_866856186995094308" iid="7cea8765813b4b94a461eb38ba7b6968" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:23" order-index="3" type="sequence-action">
-            <layout x1="85" y1="151" x2="387" y2="151" ax="85" ay="136" awidth="302" aheight="20" x="85" y="136" width="307" height="20" message-x="3" message-y="-10" />
+            <layout x1="85" y1="151" x2="387" y2="151" ax="85" ay="136" awidth="302" aheight="20" x="85" y="136" width="302" height="20" message-x="3" message-y="-10" />
             <sequence-action from="mdip438600636877452904_641531861782280424" to="mdip438600636877452904_451108399190782035" />
           </item>
           <item id="mdip438600636877452904_641531861782280424" iid="89c9b272dbe64a17b47257efbb13ca5d" container="mdip438600636877452904_219555771955424153" container-iid="84894a9aba4a45f4b2ebac8110892dcf" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="4" type="entity">
@@ -1468,31 +1468,31 @@
             <layout ax="387" ay="130" awidth="20" aheight="276" x="387" y="130" width="20" height="276" />
           </item>
           <item id="mdip438600636877452904_443455302658870837" iid="6f7c268ab1494a21b5a2bf4c8fdc2a0e" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:25" order-index="6" type="sequence-action">
-            <layout x1="407" y1="155" x2="680" y2="155" ax="407" ay="140" awidth="273" aheight="20" x="412" y="140" width="244" height="20" message-x="0" message-y="-10" />
+            <layout x1="407" y1="155" x2="680" y2="155" ax="407" ay="140" awidth="273" aheight="20" x="407" y="140" width="273" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_451108399190782035" to="mdip438600636877452904_452909257643831711" />
           </item>
           <item id="mdip438600636877452904_452909257643831711" iid="bf590020302644cfb97483b0a846a084" container="mdip438600636877452904_686807698981010287" container-iid="79b7334ca8224567ba9f4ced1e897714" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:27" order-index="7" type="entity">
             <layout ax="680" ay="134" awidth="20" aheight="284" x="680" y="134" width="20" height="284" />
           </item>
           <item id="mdip438600636877452904_705480303390165566" iid="41863a34498841b9be942876ed175643" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:12" order-index="8" type="sequence-action">
-            <layout x1="680" y1="204" x2="407" y2="204" ax="407" ay="189" awidth="273" aheight="20" x="412" y="189" width="244" height="20" message-x="1" message-y="-11" />
+            <layout x1="680" y1="204" x2="407" y2="204" ax="407" ay="189" awidth="273" aheight="20" x="407" y="189" width="273" height="20" message-x="1" message-y="-11" />
             <sequence-action from="mdip438600636877452904_452909257643831711" to="mdip438600636877452904_451108399190782035" />
           </item>
           <item id="mdip438600636877452904_523499037158311609" iid="7a75bff12ee34bb39d42620e4e1340aa" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:31" order-index="9" type="sequence-action">
-            <layout x1="387" y1="232" x2="85" y2="232" ax="85" ay="217" awidth="302" aheight="20" x="85" y="217" width="307" height="20" message-x="2" message-y="-10" />
+            <layout x1="387" y1="232" x2="85" y2="232" ax="85" ay="217" awidth="302" aheight="20" x="85" y="217" width="302" height="20" message-x="2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_451108399190782035" to="mdip438600636877452904_641531861782280424" />
           </item>
           <item id="mdip438600636877452904_317548450769364164" iid="706b0af2389d4210b767e96ee44bb50b" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:55" order-index="10" type="sequence-action">
-            <layout x1="85" y1="276" x2="387" y2="276" ax="85" ay="261" awidth="302" aheight="20" x="85" y="261" width="307" height="20" message-x="0" message-y="-10" />
+            <layout x1="85" y1="276" x2="387" y2="276" ax="85" ay="261" awidth="302" aheight="20" x="85" y="261" width="302" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_641531861782280424" to="mdip438600636877452904_451108399190782035" />
           </item>
           <item id="mdip438600636877452904_788524679998723728" iid="4a23caaf4c3f4f789ae3e0574f401735" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:17:59" order-index="11" type="sequence-action">
-            <layout x1="407" y1="295" x2="680" y2="295" ax="407" ay="280" awidth="273" aheight="20" x="412" y="280" width="244" height="20" message-x="0" message-y="-10" />
+            <layout x1="407" y1="295" x2="680" y2="295" ax="407" ay="280" awidth="273" aheight="20" x="407" y="280" width="273" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_451108399190782035" to="mdip438600636877452904_452909257643831711" />
           </item>
           <item id="ddip750464162603199127_590248197910835217" iid="e376fb1285d24351ae12e826c499d7ce" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 22:34:13" order-index="12" type="sequence-action">
-            <layout x1="-130" y1="139" x2="65" y2="139" ax="-130" ay="124" awidth="195" aheight="20" x="-130" y="35" width="195" height="20" message-x="0" message-y="-10" />
-            <sequence-action to="mdip438600636877452904_641531861782280424" />
+            <layout x1="-130" y1="139" x2="65" y2="139" ax="-130" ay="124" awidth="195" aheight="20" x="-130" y="124" width="195" height="20" message-x="0" message-y="-10" />
+            <sequence-action />
           </item>
         </layer>
       </diagram>
@@ -1533,7 +1533,7 @@
             <layout ax="688" ay="50" awidth="86" aheight="500" x="688" y="52" width="86" height="500" />
           </item>
           <item id="mdip438600636877452904_113547077126782662" iid="f437a54b2e2641eeb520e359761bddab" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:23" order-index="3" type="sequence-action">
-            <layout x1="122" y1="143" x2="462" y2="143" ax="122" ay="128" awidth="340" aheight="20" x="122" y="128" width="315" height="20" message-x="-2" message-y="-9" />
+            <layout x1="122" y1="143" x2="462" y2="143" ax="122" ay="128" awidth="340" aheight="20" x="122" y="128" width="340" height="20" message-x="-2" message-y="-9" />
             <sequence-action from="mdip438600636877452904_731636169406730592" to="mdip438600636877452904_705827269568833115" />
           </item>
           <item id="mdip438600636877452904_731636169406730592" iid="955eb28b25af4e9cbec1ce83d9efdab1" container="mdip438600636877452904_523977589872623029" container-iid="73eef614af5148428a3a632ecfb7a41d" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="4" type="entity">
@@ -1543,34 +1543,34 @@
             <layout ax="462.5" ay="130" awidth="20" aheight="276" x="462.5" y="130" width="20" height="276" />
           </item>
           <item id="mdip438600636877452904_639249158227006209" iid="de2bd4b44f7e453c8904a2e5586649f1" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:25" order-index="6" type="sequence-action">
-            <layout x1="482" y1="155" x2="721" y2="155" ax="482" ay="140" awidth="239" aheight="20" x="457" y="140" width="238" height="20" message-x="0" message-y="-10" />
+            <layout x1="482" y1="155" x2="721" y2="155" ax="482" ay="140" awidth="239" aheight="20" x="482" y="140" width="239" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_705827269568833115" to="mdip438600636877452904_774505766334798892" />
           </item>
           <item id="mdip438600636877452904_774505766334798892" iid="31e5b2d532b84983a38919dab64eea7b" container="mdip438600636877452904_586834237192284337" container-iid="049cae6dc7464e7093f340b016413621" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:27" order-index="7" type="entity">
             <layout ax="721" ay="134" awidth="20" aheight="284" x="721" y="134" width="20" height="284" />
           </item>
           <item id="mdip438600636877452904_917436578339138337" iid="fcb35dddc28046fe82c5d73b6daf0115" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:12" order-index="8" type="sequence-action">
-            <layout x1="721" y1="204" x2="482" y2="204" ax="482" ay="189" awidth="239" aheight="20" x="457" y="189" width="238" height="20" message-x="2" message-y="-10" />
+            <layout x1="721" y1="204" x2="482" y2="204" ax="482" ay="189" awidth="239" aheight="20" x="482" y="189" width="239" height="20" message-x="2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_774505766334798892" to="mdip438600636877452904_705827269568833115" />
           </item>
           <item id="mdip438600636877452904_341658625377877696" iid="48f316c6354149129eaac3b41d6b2340" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:31" order-index="9" type="sequence-action">
-            <layout x1="462" y1="232" x2="122" y2="232" ax="122" ay="217" awidth="340" aheight="20" x="122" y="217" width="315" height="20" message-x="0" message-y="-10" />
+            <layout x1="462" y1="232" x2="122" y2="232" ax="122" ay="217" awidth="340" aheight="20" x="122" y="217" width="340" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_705827269568833115" to="mdip438600636877452904_731636169406730592" />
           </item>
           <item id="mdip438600636877452904_707588835698034227" iid="97befa4e61324e8c8bab1ebb2d6a6063" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:55" order-index="10" type="sequence-action">
-            <layout x1="122" y1="276" x2="462" y2="276" ax="122" ay="261" awidth="340" aheight="20" x="122" y="261" width="315" height="20" message-x="0" message-y="-10" />
+            <layout x1="122" y1="276" x2="462" y2="276" ax="122" ay="261" awidth="340" aheight="20" x="122" y="261" width="340" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_731636169406730592" to="mdip438600636877452904_705827269568833115" />
           </item>
           <item id="mdip438600636877452904_489677911286006664" iid="8d58f53fa2b14beda1bae6b8939a2eb2" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:17:59" order-index="11" type="sequence-action">
-            <layout x1="482" y1="295" x2="721" y2="295" ax="482" ay="280" awidth="239" aheight="20" x="457" y="280" width="238" height="20" message-x="0" message-y="-10" />
+            <layout x1="482" y1="295" x2="721" y2="295" ax="482" ay="280" awidth="239" aheight="20" x="482" y="280" width="239" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_705827269568833115" to="mdip438600636877452904_774505766334798892" />
           </item>
           <item id="mdip438600636877452904_515425871985935597" iid="78d18d5defa547e29616ef5ab9810ec0" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:19:55" order-index="12" type="sequence-action">
-            <layout x1="721" y1="336" x2="482" y2="336" ax="482" ay="321" awidth="239" aheight="20" x="457" y="321" width="238" height="20" message-x="0" message-y="-10" />
+            <layout x1="721" y1="336" x2="482" y2="336" ax="482" ay="321" awidth="239" aheight="20" x="482" y="321" width="239" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_774505766334798892" to="mdip438600636877452904_705827269568833115" />
           </item>
           <item id="mdip438600636877452904_874129369442208124" iid="6d20b45c94be44fab706715ac4c4c504" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:21:13" order-index="13" type="sequence-action">
-            <layout x1="462" y1="361" x2="122" y2="361" ax="122" ay="346" awidth="340" aheight="20" x="122" y="346" width="315" height="20" message-x="1" message-y="-9" />
+            <layout x1="462" y1="361" x2="122" y2="361" ax="122" ay="346" awidth="340" aheight="20" x="122" y="346" width="340" height="20" message-x="1" message-y="-9" />
             <sequence-action from="mdip438600636877452904_705827269568833115" to="mdip438600636877452904_731636169406730592" />
           </item>
           <item id="ddip172178797619551675_610735798414054109" iid="4e87253cb0fb45359cdb1365a4ed1553" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:28:44" order-index="14" type="sequence-action">
@@ -1602,7 +1602,7 @@
             <associated-diagrams />
             <owned-items />
             <style class="default" />
-            <sequence-action type="call" message="Log in" is-asynchronous="false" />
+            <sequence-action type="call" message="Log out" is-asynchronous="false" />
           </item>
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
@@ -1616,28 +1616,28 @@
             <layout ax="688" ay="50" awidth="86" aheight="500" x="688" y="52" width="86" height="500" />
           </item>
           <item id="mdip438600636877452904_768116112794445271" iid="ef677b3c2d8e4d35b69f41c20cbe95b4" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:23" order-index="3" type="sequence-action">
-            <layout x1="122" y1="143" x2="462" y2="143" ax="122" ay="128" awidth="340" aheight="20" x="122" y="128" width="315" height="20" message-x="-2" message-y="-9" />
+            <layout x1="122" y1="143" x2="462" y2="143" ax="122" ay="128" awidth="340" aheight="20" x="122" y="128" width="340" height="20" message-x="-2" message-y="-9" />
             <sequence-action from="mdip438600636877452904_878236957385249087" to="mdip438600636877452904_548735132363223577" />
           </item>
           <item id="mdip438600636877452904_878236957385249087" iid="ea7b5bee5994486d99d1eaa092ac1182" container="mdip438600636877452904_966273527633933935" container-iid="7360e928be4644caaa2190b429565c17" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="4" type="entity">
-            <layout ax="102" ay="130" awidth="20" aheight="231" x="102" y="130" width="20" height="183" />
+            <layout ax="102" ay="130" awidth="20" aheight="183" x="102" y="130" width="20" height="183" />
           </item>
           <item id="mdip438600636877452904_548735132363223577" iid="9142bc9708f24cb3ba25ab88f68fe9f0" container="mdip438600636877452904_969040043421254187" container-iid="a4340bf0bd864090b1f42e890cacee04" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:11:27" order-index="5" type="entity">
-            <layout ax="462.5" ay="130" awidth="20" aheight="231" x="462.5" y="130" width="20" height="123" />
+            <layout ax="462.5" ay="130" awidth="20" aheight="123" x="462.5" y="130" width="20" height="123" />
           </item>
           <item id="mdip438600636877452904_358425373746825537" iid="c11359f45106475584b8f879794a189a" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:25" order-index="6" type="sequence-action">
-            <layout x1="482" y1="155" x2="721" y2="155" ax="482" ay="140" awidth="239" aheight="20" x="457" y="140" width="238" height="20" message-x="0" message-y="-10" />
+            <layout x1="482" y1="155" x2="721" y2="155" ax="482" ay="140" awidth="239" aheight="20" x="482" y="140" width="239" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_548735132363223577" to="mdip438600636877452904_344590326760353770" />
           </item>
           <item id="mdip438600636877452904_344590326760353770" iid="c80d9f5095f54bccabb25e2628843ea2" container="mdip438600636877452904_914957420843372707" container-iid="70603275ece743528ec2004075ef7736" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:12:27" order-index="7" type="entity">
             <layout ax="721" ay="134" awidth="20" aheight="202" x="721" y="134" width="20" height="202" />
           </item>
           <item id="mdip438600636877452904_818938516330775882" iid="62e42510d1964429b7264f61b793513f" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:12" order-index="8" type="sequence-action">
-            <layout x1="721" y1="204" x2="482" y2="204" ax="482" ay="189" awidth="239" aheight="20" x="457" y="189" width="238" height="20" message-x="2" message-y="-10" />
+            <layout x1="721" y1="204" x2="482" y2="204" ax="482" ay="189" awidth="239" aheight="20" x="482" y="189" width="239" height="20" message-x="2" message-y="-10" />
             <sequence-action from="mdip438600636877452904_344590326760353770" to="mdip438600636877452904_548735132363223577" />
           </item>
           <item id="mdip438600636877452904_380316107699948523" iid="8bad0c46c80844d6a5db2e22b995cf97" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:14:31" order-index="9" type="sequence-action">
-            <layout x1="462" y1="232" x2="122" y2="232" ax="122" ay="217" awidth="340" aheight="20" x="122" y="217" width="315" height="20" message-x="0" message-y="-10" />
+            <layout x1="462" y1="232" x2="122" y2="232" ax="122" ay="217" awidth="340" aheight="20" x="122" y="217" width="340" height="20" message-x="0" message-y="-10" />
             <sequence-action from="mdip438600636877452904_548735132363223577" to="mdip438600636877452904_878236957385249087" />
           </item>
           <item id="ddip172178797619551675_610735798414054109" iid="ad81583bcd1d420e98e948de67cb93d8" show-cid="false" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" creation-date="08/26/2012 21:28:44" order-index="14" type="sequence-action">
