@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true"/>
+        <h:panelGrid columns="3">
+            <p:panel header="TODO">
+                <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1">
+                    <p:column>
+                        <h:outputText id="complaint" value="#{complaintToDo.description}" ></h:outputText>
+                        <p:draggable for="complaint" revert="true" scope="#{complaintToDo.statusID}"/>
+                    </p:column>
+                </p:dataGrid>
+            </p:panel>
+            <p:panel header="IN PROGRESS">
+                <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1">
+                    <p:column>
+                        <h:outputText id="complaint" value="#{complaintInPro.description}"  ></h:outputText>
+                        <p:draggable for="complaint" revert="true" scope="#{complaintInPro.statusID}"/>
+                    </p:column>
+                </p:dataGrid>
+            </p:panel>
+            <p:panel header="VERIFY">
+                <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1">
+                    <p:column>
+                        <h:outputText id="complaint" value="#{complaintVerify.description}"  ></h:outputText>
+                        <p:draggable for="complaint" revert="true" scope="#{complaintVerify.statusID}"/>
+                    </p:column>
+                </p:dataGrid>
+            </p:panel>
+            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" scope="01" datasource="todo" for="inPro">
+                <p:ajax listener="#{complaintController.onDropInPro}" update="todo inPro" />
+            </p:droppable>
+        </h:panelGrid>
+    </h:body>
+</html>
+
