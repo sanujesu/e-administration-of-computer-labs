@@ -7,6 +7,13 @@
       >
     <h:head>
         <title>Facelet Title</title>
+
+        <script type="text/javascript">
+                function handleDrop(event, ui) {
+                        ui.draggable.fadeOut().fadeIn();
+                }
+        </script>
+
     </h:head>
     <h:body>
         <p:growl id="growl" showDetail="true"/>
@@ -25,8 +32,11 @@
                         <h:outputText id="complaint" value="#{complaintInPro.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="#{complaintInPro.statusID}"/>
                     </p:column>
+
                 </p:dataGrid>
+
             </p:panel>
+
             <p:panel header="VERIFY">
                 <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1">
                     <p:column>
@@ -35,8 +45,8 @@
                     </p:column>
                 </p:dataGrid>
             </p:panel>
-            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" scope="01" datasource="todo" for="inPro">
-                <p:ajax listener="#{complaintController.onDropInPro}" update="todo inPro" />
+            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="handleDrop" scope="01" datasource="todo" for="inPro">
+                <p:ajax listener="#{complaintController.onDropInPro}" update="todo inPro"></p:ajax>
             </p:droppable>
         </h:panelGrid>
     </h:body>
