@@ -7,6 +7,7 @@ package controller;
 import entity.Complaint;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -56,6 +57,7 @@ public class ComplaintController {
     private List<Complaint> lstInProgress;
     private List<Complaint> lstVerify;
     private List<Complaint> lstDone;
+    private int count;
 
     /** Creates a new instance of ComplaintController */
     public ComplaintController() {
@@ -63,13 +65,15 @@ public class ComplaintController {
         lstInProgress = new ArrayList<Complaint>();
         lstVerify = new ArrayList<Complaint>();
         lstDone = new ArrayList<Complaint>();
-
+        count = 0;
         Complaint todo1 = new Complaint("01", "todo1", "01");
         Complaint todo2 = new Complaint("02", "todo2", "01");
         Complaint inpro1 = new Complaint("03", "inpro1", "02");
         Complaint inpro2 = new Complaint("04", "inpro2", "02");
         Complaint verify1 = new Complaint("05", "verify1", "03");
         Complaint verify2 = new Complaint("06", "verify2", "03");
+
+        System.out.println("ComplaintController started!");
 
         lstToDo.add(todo1);
         lstToDo.add(todo2);
@@ -81,11 +85,35 @@ public class ComplaintController {
         lstVerify.add(verify2);
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void handleDropToInPro() {
+        count++;
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map map = context.getExternalContext().getRequestParameterMap();
+        String name1 = (String) map.get("name1");
+        String name2 = (String) map.get("name2");
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"INFOR", "Chuyển "+name1+" sang in progress"));
+    }
+
     public void onDropInPro(DragDropEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map map = context.getExternalContext().getRequestParameterMap();
+        int a = 2;
+        a++;
+        String name1 = (String) map.get("name1");
+        String name2 = (String) map.get("name2");
         Complaint complaint = (Complaint) event.getData();
+        String abc = (String) event.getData();
+        System.out.println("Drop ne ong noi!");
+        lstVerify.add(complaint);
 
-        lstInProgress.add(complaint);
-
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(complaint.getDescription() + " added"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ta da added"));
     }
 }
