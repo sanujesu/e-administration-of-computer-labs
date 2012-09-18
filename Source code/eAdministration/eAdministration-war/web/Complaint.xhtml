@@ -10,13 +10,19 @@
 
         <script type="text/javascript">
                 function handleDrop(event, ui) {
-                        ui.draggable.fadeOut().fadeIn();
+                        ui.draggable.fadeOut("fast");
+                        alert(event.type+" : "+ui.draggable.text());
+                        var a=ui.draggable.text();
+                        console.log(a);
+                        handleDropToInPro([{name: '$a', value: 'coco'}, {name: 'name2', value: 'paka'}]);
+                       // increment({param: 'value'});
+
                 }
         </script>
 
     </h:head>
     <h:body>
-        <p:growl id="growl" showDetail="true"/>
+        
         <h:panelGrid columns="3">
             <p:panel header="TODO">
                 <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1">
@@ -46,9 +52,12 @@
                 </p:dataGrid>
             </p:panel>
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="handleDrop" scope="01" datasource="todo" for="inPro">
-                <p:ajax listener="#{complaintController.onDropInPro}" update="todo inPro"></p:ajax>
             </p:droppable>
         </h:panelGrid>
+        <h:form>
+            <p:growl id="growl" autoUpdate="true" showDetail="true" sticky="true"/>
+            <p:remoteCommand name="handleDropToInPro" update="growl" actionListener="#{complaintController.handleDropToInPro}"></p:remoteCommand>
+        </h:form>
     </h:body>
 </html>
 
