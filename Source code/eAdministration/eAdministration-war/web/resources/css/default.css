@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
 	padding-left: 20px;
-	/*background: url(images/img07.gif) no-repeat left center;*/
+	background: url(images/img07.gif) no-repeat left center;
 	font-size: 22px;
 }
 
