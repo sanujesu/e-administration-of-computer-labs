@@ -72,6 +72,9 @@ public class ComplaintController {
         Complaint inpro2 = new Complaint("04", "inpro2", "02");
         Complaint verify1 = new Complaint("05", "verify1", "03");
         Complaint verify2 = new Complaint("06", "verify2", "03");
+        Complaint done1 = new Complaint("07", "done1", "04");
+        Complaint done2 = new Complaint("08", "done2", "04");
+
 
         System.out.println("ComplaintController started!");
 
@@ -83,6 +86,9 @@ public class ComplaintController {
 
         lstVerify.add(verify1);
         lstVerify.add(verify2);
+
+        lstDone.add(done1);
+        lstDone.add(done2);
     }
 
     public int getCount() {
@@ -93,13 +99,30 @@ public class ComplaintController {
         this.count = count;
     }
 
-    public void handleDropToInPro() {
+    public Complaint getComplaintByID(String id, String status) {
+        if (status.equalsIgnoreCase("01")) {
+            for (Complaint complaint : lstToDo) {
+                if (complaint.getDescription().equalsIgnoreCase(id)) {
+                    return complaint;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void handleDrop() {
         count++;
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
-        String name1 = (String) map.get("name1");
-        String name2 = (String) map.get("name2");
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"INFOR", "Chuyển "+name1+" sang in progress"));
+        String source = (String) map.get("source");
+        String content = (String) map.get("content");
+        String dest = (String) map.get("dest");
+        Complaint objRuntime=getComplaintByID(content,"01");
+        lstToDo.remove(objRuntime);
+        lstInProgress.add(objRuntime);
+        
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
     }
 
     public void onDropInPro(DragDropEvent event) {
