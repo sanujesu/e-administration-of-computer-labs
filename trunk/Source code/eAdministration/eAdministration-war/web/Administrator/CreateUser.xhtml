@@ -5,22 +5,30 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/eAdministration-war/faces/resources/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="/eAdministration-war/faces/resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        <!--
+        .style1 {color: #468259}
+        .style2 {color: #749865}
+        -->
+    </style>
 
     <body>
 
-        <ui:composition template="./templateGeneral.xhtml">
+        <ui:composition template="./templateAdmin.xhtml">
 
             <ui:define name="content">
                 <div id="content">
                     <div id="posts">
                         <div class="post">
-                            <h2 class="title">Register</h2>
+                            <h2 class="title">Create User</h2>
                             <div class="story">
                                 <p:panelGrid columns="2" style="margin-top: 40px; margin-left: 80px">
                                     <f:facet name="header">
-                                        Fill your information
+                                        Fill User's information
                                     </f:facet>
-
                                     <h:outputLabel for="username" value="Username : *" />
                                     <p:inputText id="username" value="" label="username" />
 
@@ -36,10 +44,10 @@
                                     <h:outputLabel for="birthday" value="Birthday : *" />
                                     <p:inputText id="birthday" value="" required="true" label="Birthday" maxlength="30"/>
 
-                                    
+
 
                                     <f:facet name="footer">
-                                        <p:commandButton type="button" value="Register" icon="ui-icon-check" style="margin:0px 0px 0px 30px"/>
+                                        <p:commandButton type="button" value="Save" icon="ui-icon-check" style="margin:0px 0px 0px 30px"/>
                                         <p:commandButton type="button" value="Cancel" icon="ui-icon-check" style="margin: 0px 0px 0px 20px"/>
                                     </f:facet>
                                 </p:panelGrid>
@@ -47,9 +55,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
 
             </ui:define>
 
