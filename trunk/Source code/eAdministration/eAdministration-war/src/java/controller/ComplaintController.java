@@ -4,8 +4,10 @@
  */
 package controller;
 
+import constant.EConstant;
 import entity.Complaint;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
@@ -58,6 +60,7 @@ public class ComplaintController {
     private List<Complaint> lstVerify;
     private List<Complaint> lstDone;
     private int count;
+    private Map<String, List<Complaint> > mapListComplaint;
 
     /** Creates a new instance of ComplaintController */
     public ComplaintController() {
@@ -65,6 +68,7 @@ public class ComplaintController {
         lstInProgress = new ArrayList<Complaint>();
         lstVerify = new ArrayList<Complaint>();
         lstDone = new ArrayList<Complaint>();
+        mapListComplaint=new HashMap<String, List<Complaint>>();
         count = 0;
         Complaint todo1 = new Complaint("01", "todo1", "01");
         Complaint todo2 = new Complaint("02", "todo2", "01");
@@ -74,9 +78,6 @@ public class ComplaintController {
         Complaint verify2 = new Complaint("06", "verify2", "03");
         Complaint done1 = new Complaint("07", "done1", "04");
         Complaint done2 = new Complaint("08", "done2", "04");
-
-
-        System.out.println("ComplaintController started!");
 
         lstToDo.add(todo1);
         lstToDo.add(todo2);
@@ -89,6 +90,13 @@ public class ComplaintController {
 
         lstDone.add(done1);
         lstDone.add(done2);
+
+        mapListComplaint.put(EConstant.E_TODO_ID, lstToDo);
+        mapListComplaint.put(EConstant.E_INPRO_ID, lstInProgress);
+        mapListComplaint.put(EConstant.E_VERIFY_ID, lstVerify);
+        mapListComplaint.put(EConstant.E_DONE_ID, lstDone);
+
+
     }
 
     public int getCount() {
@@ -100,24 +108,26 @@ public class ComplaintController {
     }
 
     public Complaint getComplaintByID(String id, String status) {
-        if (status.equalsIgnoreCase("01")) {
-            for (Complaint complaint : lstToDo) {
+        List<Complaint> lstComplaint=mapListComplaint.get(status);
+            for (Complaint complaint : lstComplaint) {
                 if (complaint.getDescription().equalsIgnoreCase(id)) {
                     return complaint;
                 }
             }
-        }
 
         return null;
+    }
+    public void processForComplaint(String source, String dest, Complaint objCom){
+
     }
 
     public void handleDrop() {
         count++;
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
-        String source = (String) map.get("source");
-        String content = (String) map.get("content");
-        String dest = (String) map.get("dest");
+        String source = (String) map.get(EConstant.E_SOURCE);
+        String content = (String) map.get(EConstant.E_CONTENT);
+        String dest = (String) map.get(EConstant.E_DEST);
         Complaint objRuntime=getComplaintByID(content,"01");
         lstToDo.remove(objRuntime);
         lstInProgress.add(objRuntime);
@@ -125,18 +135,5 @@ public class ComplaintController {
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
     }
 
-    public void onDropInPro(DragDropEvent event) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        Map map = context.getExternalContext().getRequestParameterMap();
-        int a = 2;
-        a++;
-        String name1 = (String) map.get("name1");
-        String name2 = (String) map.get("name2");
-        Complaint complaint = (Complaint) event.getData();
-        String abc = (String) event.getData();
-        System.out.println("Drop ne ong noi!");
-        lstVerify.add(complaint);
-
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ta da added"));
-    }
+    
 }
