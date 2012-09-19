@@ -12,11 +12,9 @@
                 function handleDrop(event, ui) {
                         ui.draggable.fadeOut("fast");
                         alert(event.type+" : "+ui.draggable.text());
-                        var a=ui.draggable.text();
-                        console.log(a);
-                        handleDropToInPro([{name: '$a', value: 'coco'}, {name: 'name2', value: 'paka'}]);
-                       // increment({param: 'value'});
-
+                        var content=ui.draggable.text();
+                        handleDropToInPro([{name: 'name1', value: content}, {name: 'name2', value: 'paka'}]);
+                       
                 }
         </script>
 
