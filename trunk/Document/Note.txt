@@ -18,3 +18,11 @@
 -Ngoc   : tim hieu lam phan Request
 -Son	: tim hieu lam phan Complaint
 -Su dung prime faces
+[24-09]
+-Van	:Finish doc
+-Son	:Finish Complaint
+_Ngoc	:Finish Request
+
+* : 
+	+ Chinh sua cac vung chua complaint.
+	+ Refresh page sau khi thuc hien
