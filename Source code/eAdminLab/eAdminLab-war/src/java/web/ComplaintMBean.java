@@ -5,6 +5,7 @@
 package web;
 
 import ejb.ComplaintSBean;
+import ejb.EndUserSBean;
 import entity.Complaint;
 import entity.Enduser;
 import entity.Status;
@@ -27,6 +28,8 @@ import utilities.EConstant;
 @ManagedBean(name = "complaintController")
 @RequestScoped
 public class ComplaintMBean {
+    @EJB
+    private EndUserSBean endUserSBean;
 
     @EJB
     private ComplaintSBean complaintSBean;
@@ -75,20 +78,10 @@ public class ComplaintMBean {
     @PostConstruct
     public void init() {
 
-//
-//        Complaint inpro=new Complaint("01", "hello", "on pro");
-//        Status sta2=new Status(Short.valueOf("2"), "in progress");
-//        Enduser end2=new Enduser("001");
-//        inpro.setStatus(sta2);
-//        inpro.setEnduser(end2);
-
-        this.lstToDo = this.getComplaints();
-        this.lstInProgress = this.getComplaints();
-        this.lstVerify = this.getComplaints();
-        this.lstDone = this.getComplaints();
-
-//        lstToDo.add(todo);
-//        lstInProgress.add(inpro);
+        this.lstToDo = this.getComplaintsByStatusID(EConstant.E_TODO_ID);
+        this.lstInProgress = this.getComplaintsByStatusID(EConstant.E_INPRO_ID);
+        this.lstVerify = this.getComplaintsByStatusID(EConstant.E_VERIFY_ID);
+        this.lstDone = this.getComplaintsByStatusID(EConstant.E_DONE_ID);
 
         mapListComplaint.put(EConstant.E_TODO_ID, lstToDo);
         mapListComplaint.put(EConstant.E_INPRO_ID, lstInProgress);
@@ -100,26 +93,51 @@ public class ComplaintMBean {
         return this.complaintSBean.getAll();
     }
 
+    public Complaint getComplaintById(String id) {
+        Complaint complaintRet=null;
+        List<Complaint> lstComplaint=getComplaints();
+        for(Complaint comp:lstComplaint){
+            String tempID=comp.getComplaintID().trim();
+            if(tempID.equalsIgnoreCase(id)){
+                complaintRet=comp;
+                break;
+            }
+
+
+        }
+        return complaintRet;
+       // return this.complaintSBean.getComplaintByID(id)
+    }
+    public List<Complaint> getComplaintsByStatusID(String statusID){
+        List<Complaint> lstComplaintReturn = new ArrayList<Complaint>();
+         List<Complaint> lstComplaint=getComplaints();
+        for(Complaint comp:lstComplaint){
+            Short idObj=Short.parseShort(statusID);
+            Short idCurrent=comp.getStatus().getStatusID();
+            if(String.valueOf(idCurrent).equalsIgnoreCase(String.valueOf(idObj))){
+                lstComplaintReturn.add(comp);
+            }
+        }
+        return lstComplaintReturn;
+    }
+
     public void handleDrop() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
         String source = (String) map.get(EConstant.E_OLD_STATUS);
         String content = (String) map.get(EConstant.E_CONTENT);
         String dest = (String) map.get(EConstant.E_NEW_STATUS);
-        //Complaint objRuntime=getComplaintByID(content,"01");
-        //lstToDo.remove(objRuntime);
-        //lstInProgress.add(objRuntime);
-        Complaint todo = new Complaint("01", "hello", "todo");
-        Status sta = new Status(Short.valueOf("1"), "TODO");
-        Enduser end = new Enduser("001");
-        todo.setStatus(sta);
-        todo.setEnduser(end);
-
-        try {
-            this.addComplaint(todo);
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
+        String id="";
+        String[] data=content.split("_");
+        if(data.length>1){
+            id=data[0].trim();
         }
+        Complaint currentComplaint = this.getComplaintById(id);
+        Status sta=new Status(Short.parseShort(dest),"");
+        currentComplaint.setStatus(sta);
+        updateComplaint(currentComplaint);
+        mapListComplaint.get(source).remove(currentComplaint);
+        mapListComplaint.get(dest).add(currentComplaint);
 
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
     }
@@ -127,5 +145,7 @@ public class ComplaintMBean {
     public void addComplaint(Complaint cmp) {
         this.complaintSBean.insertComplaint(cmp);
     }
-    
+    public void updateComplaint(Complaint cmp){
+        this.complaintSBean.updateComplaint(cmp);
+    }
 }

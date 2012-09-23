@@ -71,7 +71,7 @@
             <p:panel header="TODO">
                 <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1">
                     <p:column>
-                        <h:outputText id="complaint" value="#{complaintToDo.description}" ></h:outputText>
+                        <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.description}" ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="1"/>
                     </p:column>
                 </p:dataGrid>
@@ -79,7 +79,7 @@
             <p:panel header="IN PROGRESS">
                 <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1">
                     <p:column>
-                        <h:outputText id="complaint" value="#{complaintInPro.description}"  ></h:outputText>
+                        <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="2"/>
                     </p:column>
 
@@ -90,7 +90,7 @@
             <p:panel header="VERIFY">
                 <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1">
                     <p:column>
-                        <h:outputText id="complaint" value="#{complaintVerify.description}"  ></h:outputText>
+                        <h:outputText id="complaint" value="#{complaintVerify.complaintID}_#{complaintVerify.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="3"/>
                     </p:column>
                 </p:dataGrid>
@@ -99,22 +99,22 @@
             <p:panel header="DONE">
                 <p:dataGrid id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1">
                     <p:column>
-                        <h:outputText id="complaint" value="#{complaintDone.description}"  ></h:outputText>
+                        <h:outputText id="complaint" value="#{complaintDone.complaintID}_#{complaintDone.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="4"/>
                     </p:column>
                 </p:dataGrid>
             </p:panel>
 
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropToDoToInPro" scope="1" for="inPro">
+               
+            </p:droppable>
+            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropInProToVerify" scope="2" for="verify">
                 
             </p:droppable>
-            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropInProToVerify" scope="02" for="verify">
+            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToDone" scope="3" for="done">
                 
             </p:droppable>
-            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToDone" scope="03" for="done">
-                
-            </p:droppable>
-            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToToDo" scope="@all" for="todo">
+            <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToToDo" scope="4" for="todo">
                
             </p:droppable>
 
