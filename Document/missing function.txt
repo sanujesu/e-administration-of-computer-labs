@@ -1,0 +1,9 @@
+Edit template all team
+	Ngoc : Edit schedule -> Booking schedule, remove Delete schedule, 
+	Son : Remove history. Update status
+	
+Missing :
+	Administrator :Assign complaint, review report
+	Instructor : Config management,Maintain documentation of softech and hardware, generate report
+	
+	
