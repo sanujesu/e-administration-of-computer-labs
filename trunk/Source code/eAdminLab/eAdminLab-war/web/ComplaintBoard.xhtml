@@ -66,21 +66,42 @@
 
     </h:head>
     <h:body>
-
+        <!--        <h:form id="form">-->
         <h:panelGrid columns="4">
             <p:panel header="TODO">
-                <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1">
-                    <p:column>
-                        <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.description}" ></h:outputText>
+                <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1"
+                            rows="6" paginator="true"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
+                    <p:column style="border: chartreuse;border-width: thick">
+                        <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.description}" >
+                            <!--                            <p:button value="detail"></p:button>-->
+                        </h:outputText>
                         <p:draggable for="complaint" revert="true" scope="1"/>
+
+                        <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{complaintToDo}"
+                                                         target="#{complaintController.selectedComplaint}" />
+                        </p:commandLink>
+
                     </p:column>
                 </p:dataGrid>
+
             </p:panel>
             <p:panel header="IN PROGRESS">
-                <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1">
+                <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1"
+                            rows="6" paginator="true"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="2"/>
+                        <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{complaintInPro}"
+                                                         target="#{complaintController.selectedComplaint}" />
+                        </p:commandLink>
                     </p:column>
 
                 </p:dataGrid>
@@ -88,34 +109,50 @@
             </p:panel>
 
             <p:panel header="VERIFY">
-                <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1">
+                <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1"
+                            rows="6" paginator="true"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintVerify.complaintID}_#{complaintVerify.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="3"/>
+                        <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{complaintVerify}"
+                                                         target="#{complaintController.selectedComplaint}" />
+                        </p:commandLink>
                     </p:column>
                 </p:dataGrid>
             </p:panel>
 
             <p:panel header="DONE">
-                <p:dataGrid id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1">
+                <p:dataGrid id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1"
+                            rows="6" paginator="true"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintDone.complaintID}_#{complaintDone.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="4"/>
+                        <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{complaintDone}"
+                                                         target="#{complaintController.selectedComplaint}" />
+                        </p:commandLink>
                     </p:column>
                 </p:dataGrid>
             </p:panel>
 
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropToDoToInPro" scope="1" for="inPro">
-               
+
             </p:droppable>
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropInProToVerify" scope="2" for="verify">
-                
+
             </p:droppable>
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToDone" scope="3" for="done">
-                
+
             </p:droppable>
             <p:droppable activeStyleClass="ui-state-highlight" tolerance="fit" onDrop="jsDropVerifyToToDo" scope="4" for="todo">
-               
+
             </p:droppable>
 
 
@@ -124,6 +161,29 @@
             <p:growl id="growl" autoUpdate="true" showDetail="true" sticky="true"/>
             <p:remoteCommand name="handleDrop" update="growl " actionListener="#{complaintController.handleDrop}"></p:remoteCommand>
         </h:form>
+        <p:dialog id="dialogId" modal="true" widgetVar="complaintDetail" header="#{complaintController.selectedComplaint.title}" showEffect="slide" hideEffect="explode">
+            <p:outputPanel id="carDetail" layout="block">
+
+                <h:panelGrid  columns="2" cellpadding="5">
+                    <h:outputLabel for="compID" value="Complaint ID" />
+                    <h:outputText id="compID" value="#{complaintController.selectedComplaint.complaintID}" />
+
+                    <h:outputLabel for="compTitle" value="Title" />
+                    <h:outputText id="compTitle" value="#{complaintController.selectedComplaint.title}" />
+
+                    <h:outputLabel for="compDescrip" value="Description" />
+                    <h:outputText id="compDescrip" value="#{complaintController.selectedComplaint.description}"/>
+
+                    <h:outputLabel for="compAssigner" value="Assigner" />
+                    <h:outputText id="compAssigner" value="#{complaintController.selectedComplaint.enduser.userName}"/>
+
+                    <h:outputLabel for="compStatus" value="Status" />
+                    <h:outputText id="compStatus" value="#{complaintController.selectedComplaint.status.statusName}"/>
+                    
+                </h:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+        <!--        </h:form>-->
     </h:body>
 </html>
 

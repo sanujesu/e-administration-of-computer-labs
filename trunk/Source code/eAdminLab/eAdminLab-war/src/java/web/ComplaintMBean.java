@@ -7,12 +7,14 @@ package web;
 import ejb.ComplaintSBean;
 import ejb.EndUserSBean;
 import entity.Complaint;
-import entity.Enduser;
 import entity.Status;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -28,9 +30,9 @@ import utilities.EConstant;
 @ManagedBean(name = "complaintController")
 @RequestScoped
 public class ComplaintMBean {
+
     @EJB
     private EndUserSBean endUserSBean;
-
     @EJB
     private ComplaintSBean complaintSBean;
     private List<Complaint> lstToDo = new ArrayList<Complaint>();
@@ -38,7 +40,7 @@ public class ComplaintMBean {
     private List<Complaint> lstVerify = new ArrayList<Complaint>();
     private List<Complaint> lstDone = new ArrayList<Complaint>();
     private Map<String, List<Complaint>> mapListComplaint = new HashMap<String, List<Complaint>>();
-
+    private Complaint selectedComplaint;
     /** Creates a new instance of ComplaintMBean */
     public ComplaintMBean() {
     }
@@ -75,6 +77,14 @@ public class ComplaintMBean {
         this.lstVerify = lstVerify;
     }
 
+    public Complaint getSelectedComplaint() {
+        return selectedComplaint;
+    }
+
+    public void setSelectedComplaint(Complaint selectedComplaint) {
+        this.selectedComplaint = selectedComplaint;
+    }
+
     @PostConstruct
     public void init() {
 
@@ -94,27 +104,28 @@ public class ComplaintMBean {
     }
 
     public Complaint getComplaintById(String id) {
-        Complaint complaintRet=null;
-        List<Complaint> lstComplaint=getComplaints();
-        for(Complaint comp:lstComplaint){
-            String tempID=comp.getComplaintID().trim();
-            if(tempID.equalsIgnoreCase(id)){
-                complaintRet=comp;
+        Complaint complaintRet = null;
+        List<Complaint> lstComplaint = getComplaints();
+        for (Complaint comp : lstComplaint) {
+            String tempID = comp.getComplaintID().trim();
+            if (tempID.equalsIgnoreCase(id)) {
+                complaintRet = comp;
                 break;
             }
 
 
         }
         return complaintRet;
-       // return this.complaintSBean.getComplaintByID(id)
+        // return this.complaintSBean.getComplaintByID(id)
     }
-    public List<Complaint> getComplaintsByStatusID(String statusID){
+
+    public List<Complaint> getComplaintsByStatusID(String statusID) {
         List<Complaint> lstComplaintReturn = new ArrayList<Complaint>();
-         List<Complaint> lstComplaint=getComplaints();
-        for(Complaint comp:lstComplaint){
-            Short idObj=Short.parseShort(statusID);
-            Short idCurrent=comp.getStatus().getStatusID();
-            if(String.valueOf(idCurrent).equalsIgnoreCase(String.valueOf(idObj))){
+        List<Complaint> lstComplaint = getComplaints();
+        for (Complaint comp : lstComplaint) {
+            Short idObj = Short.parseShort(statusID);
+            Short idCurrent = comp.getStatus().getStatusID();
+            if (String.valueOf(idCurrent).equalsIgnoreCase(String.valueOf(idObj))) {
                 lstComplaintReturn.add(comp);
             }
         }
@@ -127,25 +138,33 @@ public class ComplaintMBean {
         String source = (String) map.get(EConstant.E_OLD_STATUS);
         String content = (String) map.get(EConstant.E_CONTENT);
         String dest = (String) map.get(EConstant.E_NEW_STATUS);
-        String id="";
-        String[] data=content.split("_");
-        if(data.length>1){
-            id=data[0].trim();
+        String id = "";
+        String[] data = content.split(EConstant.E_SEPERATOR);
+        if (data.length > 1) {
+            id = data[0].trim();
         }
         Complaint currentComplaint = this.getComplaintById(id);
-        Status sta=new Status(Short.parseShort(dest),"");
+        Status sta = new Status(Short.parseShort(dest), "");
         currentComplaint.setStatus(sta);
         updateComplaint(currentComplaint);
+
         mapListComplaint.get(source).remove(currentComplaint);
         mapListComplaint.get(dest).add(currentComplaint);
 
+        //Refresh this page
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("./ComplaintBoard.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ComplaintMBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
     }
 
     public void addComplaint(Complaint cmp) {
         this.complaintSBean.insertComplaint(cmp);
     }
-    public void updateComplaint(Complaint cmp){
+
+    public void updateComplaint(Complaint cmp) {
         this.complaintSBean.updateComplaint(cmp);
     }
 }
