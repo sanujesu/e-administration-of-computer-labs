@@ -27,8 +27,8 @@
 
             <div id="menu">
                 <ul>
-                    <li><a href="#" accesskey="1" title="">Lab</a></li>
-                    <li><a href="#" accesskey="2" title="">Compaint</a></li>
+                    <li><a href="Home.xhtml" accesskey="1" title="">Home</a></li>
+                    <li><a href="Complaint.xhtml" accesskey="2" title="">Complaint</a></li>
                     <li><a href="Register.xhtml" accesskey="3" title="">Register</a></li>
                     <li><a href="About.xhtml" accesskey="4" title="">About</a></li>
                     <li><a href="#" accesskey="5" title="">Login</a></li>
@@ -40,7 +40,7 @@
                 <h2>
                     <p:imageSwitch effect="fade">
                         <ui:repeat value="#{imageSwitchBean.images}" var="image">
-                            <p:graphicImage value="/resources/css/images/#{image}" />
+                            <p:graphicImage value="/res/images/#{image}" />
                         </ui:repeat>
                     </p:imageSwitch>
                 </h2>
@@ -50,56 +50,20 @@
             <!-- end #header -->
 
             <div id="wrapper">
-                <div id="content">
+                <div id="contentComplaint">
                     <ui:insert name="content">
 
                     </ui:insert>
 
 
 
-
-                    <div id="links">
-                        <ul>
-                            <li>
-                                <h2>Request</h2>
-                                <ul>
-                                    <li><a href="#">Server room details</a></li>
-                                    <li><a href="#">View lab details </a></li>
-                                    <li><a href="#">Edit schedule</a></li>
-                                    <li><a href="#">Delete </a><span class="style1">schedule</span></li>
-                                    <li><a href="#">E - Learning</a> </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h2>Complaint</h2>
-                                <ul>
-                                    <li><a href="#">All complaints</a></li>
-                                    <li><a href="#">New complaint </a></li>
-                                    <li><a href="#">History</a></li>
-                                    <li><a href="#">Update status</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h2>Profile</h2>
-                                <ul>
-                                    <li><a href="YourProfile.xhtml">Your profile </a></li>
-                                    <li><a href="About.xhtml">About</a></li>
-                                    <li><a href="Contact.xhtml">Contact</a></li>
-                                    <li><a href="#">Help</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end #links -->
-                    <div style="clear: both;">&nbsp;</div>
                 </div>
             </div>
-            <!-- end #content -->
+
             <div id="footer">
-                <p id="legal">Copyright Van Ngo - Son Nguyen - Ngoc Phan - SoftechAptech Da Nang </p>
+                <p id="legal">Copyright by Van Ngo - Son Nguyen - Ngoc Phan - SoftechAptech Da Nang </p>
                 <p id="brand">e - Administrator</p>
             </div>
-            <!-- end #footer -->
         </f:view>
     </h:body>
 
