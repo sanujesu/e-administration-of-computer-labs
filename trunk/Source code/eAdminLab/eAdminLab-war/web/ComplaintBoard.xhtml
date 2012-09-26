@@ -62,9 +62,9 @@
 
     }
 
-    function handleUpdate(){
+    function handleUpdateComplaint(){
         alert("hehe");
-        update();
+        handleUpdate();
     }
 
         </script>
@@ -196,7 +196,7 @@
                         <h:outputText id="compCreator" value="#{complaintController.selectedComplaint.enduser.userName}"/>
 
                         <f:facet name="footer">
-                            <p:commandButton id="updateBtn" value="Update" oncomplete="complaintDetail.hide()">
+                            <p:commandButton onclick="handleUpdateComplaint" id="updateBtn" value="Update" oncomplete="complaintDetail.hide()">
                                 <p:remoteCommand name="handleUpdate" actionListener="#{complaintController.update}"></p:remoteCommand>                </p:commandButton>
                             <p:commandButton id="closeBtn" value="Close" />
                         </f:facet>
