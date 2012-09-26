@@ -8,7 +8,15 @@
     <h:head>
         <title>Complaint Page</title>
 
-        <script type="text/javascript">
+        
+
+    </h:head>
+    <body>
+
+        <ui:composition template="./../Template/templateComplaint.xhtml">
+
+            <ui:define name="content">
+                <script type="text/javascript">
     /**
      * Declare constant
      */
@@ -68,13 +76,6 @@
     }
 
         </script>
-
-    </h:head>
-    <body>
-
-        <ui:composition template="./../Template/templateComplaint.xhtml">
-
-            <ui:define name="content">
                 <h:panelGrid columns="4">
                     <p:panel header="TODO">
                         <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1"
