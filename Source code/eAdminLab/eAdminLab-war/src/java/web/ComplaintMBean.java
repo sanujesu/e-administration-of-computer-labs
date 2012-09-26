@@ -201,7 +201,7 @@ public class ComplaintMBean {
         return lstUsersName;
     }
 
-    public void update(ActionEvent actionEvent){
+    public void update(){
         if(selectedComplaint!=null){
             selectedComplaint.getEnduser1().setUserName(currentUser);
         }
