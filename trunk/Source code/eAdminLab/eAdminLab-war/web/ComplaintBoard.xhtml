@@ -71,8 +71,8 @@
             <p:panel header="TODO">
                 <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1"
                             rows="6" paginator="true"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
                     <p:column style="border: chartreuse;border-width: thick">
                         <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.description}" >
                             <!--                            <p:button value="detail"></p:button>-->
@@ -92,8 +92,8 @@
             <p:panel header="IN PROGRESS">
                 <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1"
                             rows="6" paginator="true"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="2"/>
@@ -111,8 +111,8 @@
             <p:panel header="VERIFY">
                 <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1"
                             rows="6" paginator="true"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintVerify.complaintID}_#{complaintVerify.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="3"/>
@@ -128,8 +128,8 @@
             <p:panel header="DONE">
                 <p:dataGrid id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1"
                             rows="6" paginator="true"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
                     <p:column>
                         <h:outputText id="complaint" value="#{complaintDone.complaintID}_#{complaintDone.description}"  ></h:outputText>
                         <p:draggable for="complaint" revert="true" scope="4"/>
@@ -175,11 +175,14 @@
                     <h:outputText id="compDescrip" value="#{complaintController.selectedComplaint.description}"/>
 
                     <h:outputLabel for="compAssigner" value="Assigner" />
-                    <h:outputText id="compAssigner" value="#{complaintController.selectedComplaint.enduser.userName}"/>
+                    <h:outputText id="compAssigner" value="#{complaintController.selectedComplaint.enduser1.userName}"/>
 
                     <h:outputLabel for="compStatus" value="Status" />
                     <h:outputText id="compStatus" value="#{complaintController.selectedComplaint.status.statusName}"/>
-                    
+
+                    <h:outputLabel for="compCreator" value="Creator" />
+                    <h:outputText id="compCreator" value="#{complaintController.selectedComplaint.enduser.userName}"/>
+
                 </h:panelGrid>
             </p:outputPanel>
         </p:dialog>
