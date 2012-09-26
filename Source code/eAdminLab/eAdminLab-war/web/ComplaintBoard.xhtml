@@ -62,6 +62,11 @@
 
     }
 
+    function handleUpdate(){
+        alert("hehe");
+        update();
+    }
+
         </script>
 
     </h:head>
@@ -162,29 +167,43 @@
             <p:remoteCommand name="handleDrop" update="growl " actionListener="#{complaintController.handleDrop}"></p:remoteCommand>
         </h:form>
         <p:dialog id="dialogId" modal="true" widgetVar="complaintDetail" header="#{complaintController.selectedComplaint.title}" showEffect="slide" hideEffect="explode">
-            <p:outputPanel id="carDetail" layout="block">
+            <p:outputPanel id="complaintDetail" layout="block">
+                <h:form prependId="false">
+                    <h:panelGrid  columns="2" cellpadding="5">
+                        <h:outputLabel for="compID" value="Complaint ID" />
+                        <h:outputText id="compID" value="#{complaintController.selectedComplaint.complaintID}" />
 
-                <h:panelGrid  columns="2" cellpadding="5">
-                    <h:outputLabel for="compID" value="Complaint ID" />
-                    <h:outputText id="compID" value="#{complaintController.selectedComplaint.complaintID}" />
+                        <h:outputLabel for="compTitle" value="Title" />
+                        <p:inplace editor="true" id="compTitle">
+                            <p:inputText value="#{complaintController.selectedComplaint.title}" />
+                        </p:inplace>
 
-                    <h:outputLabel for="compTitle" value="Title" />
-                    <h:outputText id="compTitle" value="#{complaintController.selectedComplaint.title}" />
+                        <h:outputLabel for="compDescrip" value="Description" />
+                        <p:inplace editor="true" id="compDescrip">
+                            <p:inputText value="#{complaintController.selectedComplaint.description}" />
+                        </p:inplace>
+                        <h:outputLabel for="compAssigner" value="Assigner" />
+                        <p:inplace id="selectableInplace" label="#{complaintController.currentUser}" effectSpeed="fast" event="dblclick">
+                            <h:selectOneMenu>
+                                <f:selectItems value="#{complaintController.users}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </p:inplace>  
 
-                    <h:outputLabel for="compDescrip" value="Description" />
-                    <h:outputText id="compDescrip" value="#{complaintController.selectedComplaint.description}"/>
+                        <h:outputLabel for="compStatus" value="Status" />
+                        <h:outputText id="compStatus" value="#{complaintController.selectedComplaint.status.statusName}"/>
 
-                    <h:outputLabel for="compAssigner" value="Assigner" />
-                    <h:outputText id="compAssigner" value="#{complaintController.selectedComplaint.enduser1.userName}"/>
+                        <h:outputLabel for="compCreator" value="Creator" />
+                        <h:outputText id="compCreator" value="#{complaintController.selectedComplaint.enduser.userName}"/>
 
-                    <h:outputLabel for="compStatus" value="Status" />
-                    <h:outputText id="compStatus" value="#{complaintController.selectedComplaint.status.statusName}"/>
-
-                    <h:outputLabel for="compCreator" value="Creator" />
-                    <h:outputText id="compCreator" value="#{complaintController.selectedComplaint.enduser.userName}"/>
-
-                </h:panelGrid>
+                        <f:facet name="footer">
+                            <p:commandButton id="updateBtn" value="Update" oncomplete="complaintDetail.hide()">
+                                <p:remoteCommand name="handleUpdate" actionListener="#{complaintController.update}"></p:remoteCommand>                </p:commandButton>
+                            <p:commandButton id="closeBtn" value="Close" />
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
             </p:outputPanel>
+
         </p:dialog>
         <!--        </h:form>-->
     </h:body>

@@ -8,6 +8,8 @@ import ejb.ComplaintSBean;
 import ejb.EndUserSBean;
 import entity.Complaint;
 import entity.Status;
+import entity.Enduser;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,12 +37,15 @@ public class ComplaintMBean {
     private EndUserSBean endUserSBean;
     @EJB
     private ComplaintSBean complaintSBean;
+    
     private List<Complaint> lstToDo = new ArrayList<Complaint>();
     private List<Complaint> lstInProgress = new ArrayList<Complaint>();
     private List<Complaint> lstVerify = new ArrayList<Complaint>();
     private List<Complaint> lstDone = new ArrayList<Complaint>();
     private Map<String, List<Complaint>> mapListComplaint = new HashMap<String, List<Complaint>>();
     private Complaint selectedComplaint;
+    private String currentUser;
+    private List<String> users= new ArrayList<String>();
     /** Creates a new instance of ComplaintMBean */
     public ComplaintMBean() {
     }
@@ -83,10 +88,31 @@ public class ComplaintMBean {
 
     public void setSelectedComplaint(Complaint selectedComplaint) {
         this.selectedComplaint = selectedComplaint;
+        currentUser=selectedComplaint.getEnduser1().getUserName().toString();
+        //setCurrentUser(selectedComplaint.getEnduser1().getUserName());
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public List<String> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<String> users) {
+        this.users = users;
     }
 
     @PostConstruct
     public void init() {
+
+        currentUser="con heo";
+        users=getUsersByRole("a");
 
         this.lstToDo = this.getComplaintsByStatusID(EConstant.E_TODO_ID);
         this.lstInProgress = this.getComplaintsByStatusID(EConstant.E_INPRO_ID);
@@ -112,8 +138,6 @@ public class ComplaintMBean {
                 complaintRet = comp;
                 break;
             }
-
-
         }
         return complaintRet;
         // return this.complaintSBean.getComplaintByID(id)
@@ -166,5 +190,20 @@ public class ComplaintMBean {
 
     public void updateComplaint(Complaint cmp) {
         this.complaintSBean.updateComplaint(cmp);
+    }
+    public List<String> getUsersByRole(String roleID){
+        List<String> lstUsersName=new ArrayList<String>();
+        List<Enduser> lstUser=this.endUserSBean.getAll();
+        for(Enduser user : lstUser){
+            if(user!=null)
+                lstUsersName.add(user.getUserName());
+        }
+        return lstUsersName;
+    }
+
+    public void update(ActionEvent actionEvent){
+        if(selectedComplaint!=null){
+            selectedComplaint.getEnduser1().setUserName(currentUser);
+        }
     }
 }

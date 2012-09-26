@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ejb;
 
 import entity.Enduser;
@@ -20,6 +19,7 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class EndUserSBean {
+
     @PersistenceContext(unitName = "eAdminLab-ejbPU")
     private EntityManager em;
 
@@ -27,22 +27,25 @@ public class EndUserSBean {
         em.persist(object);
     }
 
-    public Enduser getUserByID(String id){
-        Query query=em.createNamedQuery(id);
-        Enduser user=null;
-        try{
-        user=(Enduser) query.getSingleResult();
-        }catch(Exception ex){
+    public Enduser getUserByID(String id) {
+        Query query = em.createNamedQuery(id);
+        Enduser user = null;
+        try {
+            user = (Enduser) query.getSingleResult();
+        } catch (Exception ex) {
             System.out.println(ex.toString());
         }
         return user;
     }
-    public List<Enduser> getAll(){
-        Query que = em.createNamedQuery("Enduser.findAll");
+
+    public List<Enduser> getAll() {
+        Query que = null;
+        try {
+            que = em.createNamedQuery("Enduser.findAll");
+        } catch (Exception ex) {
+        }
         return que.getResultList();
     }
-    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
- 
 }
