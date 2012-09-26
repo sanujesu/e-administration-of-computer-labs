@@ -9,7 +9,6 @@ import ejb.EndUserSBean;
 import entity.Complaint;
 import entity.Status;
 import entity.Enduser;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import utilities.EConstant;
 
 /**
@@ -46,6 +46,10 @@ public class ComplaintMBean {
     private Complaint selectedComplaint;
     private String currentUser;
     private List<String> users= new ArrayList<String>();
+    public static Complaint tmpComplaint=new Complaint();
+    public String newTitle, newDesc, newAssigner;
+
+
     /** Creates a new instance of ComplaintMBean */
     public ComplaintMBean() {
     }
@@ -88,7 +92,10 @@ public class ComplaintMBean {
 
     public void setSelectedComplaint(Complaint selectedComplaint) {
         this.selectedComplaint = selectedComplaint;
-        currentUser=selectedComplaint.getEnduser1().getUserName().toString();
+        newAssigner=selectedComplaint.getEnduser1().getUserName().toString();
+        newTitle=selectedComplaint.getTitle();
+        newDesc=selectedComplaint.getDescription();
+        tmpComplaint=selectedComplaint;
         //setCurrentUser(selectedComplaint.getEnduser1().getUserName());
     }
 
@@ -98,6 +105,8 @@ public class ComplaintMBean {
 
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
+        
+
     }
 
     public List<String> getUsers() {
@@ -106,6 +115,43 @@ public class ComplaintMBean {
 
     public void setUsers(List<String> users) {
         this.users = users;
+    }
+    public String getNewAssigner() {
+        return newAssigner;
+    }
+
+    public void setNewAssigner(String newAssigner) {
+        this.newAssigner = newAssigner;
+        if(tmpComplaint!=null){
+            Enduser end=new Enduser("002");
+            tmpComplaint.setEnduser1(end);
+            updateComplaint(tmpComplaint);
+        }
+
+    }
+
+    public String getNewDesc() {
+        return newDesc;
+    }
+
+    public void setNewDesc(String newDesc) {
+        this.newDesc = newDesc;
+        if(tmpComplaint!=null){
+            tmpComplaint.setDescription(newDesc);
+            updateComplaint(tmpComplaint);
+        }
+    }
+
+    public String getNewTitle() {
+        return newTitle;
+    }
+
+    public void setNewTitle(String newTitle) {
+        this.newTitle = newTitle;
+        if(tmpComplaint!=null){
+            tmpComplaint.setTitle(newTitle);
+            updateComplaint(tmpComplaint);
+        }
     }
 
     @PostConstruct
@@ -177,7 +223,7 @@ public class ComplaintMBean {
 
         //Refresh this page
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("./ComplaintBoard.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("./Complaint.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ComplaintMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -201,9 +247,14 @@ public class ComplaintMBean {
         return lstUsersName;
     }
 
-    public void update(){
-        if(selectedComplaint!=null){
-            selectedComplaint.getEnduser1().setUserName(currentUser);
+    public void update(ActionEvent event){
+        String ab=event.getComponent().getClientId();
+        if(tmpComplaint!=null){
+            //tmpComplaint.getEnduser1().setUserName(currentUser);
         }
+    }
+    public void updateTitle(ActionEvent event){
+        String ab=event.getComponent().getClientId();
+        int a=2;
     }
 }
