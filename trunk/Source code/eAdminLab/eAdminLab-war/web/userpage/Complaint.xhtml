@@ -8,7 +8,7 @@
     <h:head>
         <title>Complaint Page</title>
 
-        
+
 
     </h:head>
     <body>
@@ -69,13 +69,14 @@
                                    {name: E_NEW_STATUS, value: E_TODO}]);
 
     }
-
-    function handleUpdateComplaint(){
-        alert("hehe");
+    function handleUp(){
+        alert('hi paka');
         handleUpdate();
     }
 
-        </script>
+
+
+                </script>
                 <h:panelGrid columns="4">
                     <p:panel header="TODO">
                         <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1"
@@ -169,25 +170,28 @@
                 <h:form>
                     <p:growl id="growl" autoUpdate="true" showDetail="true" sticky="true"/>
                     <p:remoteCommand name="handleDrop" update="growl " actionListener="#{complaintController.handleDrop}"></p:remoteCommand>
+                    <p:remoteCommand name="handleUpdate" update="growl " actionListener="#{complaintController.update}"></p:remoteCommand>
                 </h:form>
+
                 <p:dialog id="dialogId" modal="true" widgetVar="complaintDetail" header="#{complaintController.selectedComplaint.title}" showEffect="slide" hideEffect="explode">
                     <p:outputPanel id="complaintDetail" layout="block">
                         <h:form prependId="false">
+
                             <h:panelGrid  columns="2" cellpadding="5">
                                 <h:outputLabel for="compID" value="Complaint ID" />
                                 <h:outputText id="compID" value="#{complaintController.selectedComplaint.complaintID}" />
 
                                 <h:outputLabel for="compTitle" value="Title" />
                                 <p:inplace editor="true" id="compTitle">
-                                    <p:inputText value="#{complaintController.selectedComplaint.title}" />
+                                    <p:inputText  value="#{complaintController.newTitle}" />
                                 </p:inplace>
 
                                 <h:outputLabel for="compDescrip" value="Description" />
-                                <p:inplace editor="true" id="compDescrip">
-                                    <p:inputText value="#{complaintController.selectedComplaint.description}" />
+                                <p:inplace  editor="true" id="compDescrip">
+                                    <p:inputText required="true" value="#{complaintController.newDesc}" />
                                 </p:inplace>
                                 <h:outputLabel for="compAssigner" value="Assigner" />
-                                <p:inplace id="selectableInplace" label="#{complaintController.currentUser}" effectSpeed="fast" event="dblclick">
+                                <p:inplace id="selectableInplace" label="#{complaintController.newAssigner}" effectSpeed="fast" event="dblclick">
                                     <h:selectOneMenu>
                                         <f:selectItems value="#{complaintController.users}"></f:selectItems>
                                     </h:selectOneMenu>
@@ -199,17 +203,14 @@
                                 <h:outputLabel for="compCreator" value="Creator" />
                                 <h:outputText id="compCreator" value="#{complaintController.selectedComplaint.enduser.userName}"/>
 
-                                <f:facet name="footer">
-                                    <p:commandButton onclick="handleUpdateComplaint" id="updateBtn" value="Update" oncomplete="complaintDetail.hide()">
-                                        <p:remoteCommand name="handleUpdate" actionListener="#{complaintController.update}"></p:remoteCommand>                </p:commandButton>
-                                    <p:commandButton id="closeBtn" value="Close" />
-                                </f:facet>
+
                             </h:panelGrid>
                         </h:form>
                     </p:outputPanel>
 
                 </p:dialog>
                 <!--        </h:form>-->
+
             </ui:define>
 
         </ui:composition>
