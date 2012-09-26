@@ -6,6 +6,7 @@
 package ejb;
 
 import entity.Enduser;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -35,6 +36,10 @@ public class EndUserSBean {
             System.out.println(ex.toString());
         }
         return user;
+    }
+    public List<Enduser> getAll(){
+        Query que = em.createNamedQuery("Enduser.findAll");
+        return que.getResultList();
     }
     
     // Add business logic below. (Right-click in editor and choose
