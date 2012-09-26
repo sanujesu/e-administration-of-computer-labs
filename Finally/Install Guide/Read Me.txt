@@ -1,0 +1,56 @@
+=================================================================
+Project Name	: e-Administration
+Develop Team	: Group 3 - Batch 54B - Softech - Aptech 1
+		Van Ngo Thi Bich ( Group Leader )
+		Son Nguyen Hoang
+		Ngoc Phan Thanh
+
+Project Date	: 05-April-2012 to 30-Sep2012
+=================================================================
+
+=================================================================
+HOW TO BUILD THE PROJECT
+=================================================================
+Software requirement :  NetBean 6.9.1
+			SQL Server 2005
+Alter all requirements are install, just get in the NetBean 6.9.1  and build the project
+=================================================================
+
+=================================================================
+HOW TO RUN THE WEBSITE
+=================================================================
+1-Attach the database.
+2-Run with Home.xhtml
+3-Various user account :
+	a. Admin:
+			Username : admin
+			Password : admin
+			Role : Admin
+			After logged in : redirected automatically to Admin page
+	b. Users :
+			Username:	Register in home page
+			Password:	Register in home page
+			Role : User
+			After logged in : redirected automatically to User page
+	c. Technical Staff:
+			Username:	tech
+			Password:	123
+			Role : User
+			After logged in : redirected automatically to technical staff page
+	d. Instructor:
+			Username:	inst
+			Password:	123
+			Role : User
+			After logged in : redirected automatically to instructor page
+
+	e. HOD:
+			Username:	hod
+			Password:	123
+			Role : User
+			After logged in : redirected automatically to hod page
+
+
+
+
+
+=================================================================		
