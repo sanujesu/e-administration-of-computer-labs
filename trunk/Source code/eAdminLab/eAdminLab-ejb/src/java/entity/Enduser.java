@@ -58,8 +58,10 @@ public class Enduser implements Serializable {
     @Column(name = "birthday", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enduser")
+    @OneToMany(mappedBy = "enduser")
     private List<Complaint> complaintList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enduser1")
+    private List<Complaint> complaintList1;
     @JoinColumn(name = "roleID", referencedColumnName = "roleID", nullable = false)
     @ManyToOne(optional = false)
     private Role role;
@@ -134,6 +136,14 @@ public class Enduser implements Serializable {
 
     public void setComplaintList(List<Complaint> complaintList) {
         this.complaintList = complaintList;
+    }
+
+    public List<Complaint> getComplaintList1() {
+        return complaintList1;
+    }
+
+    public void setComplaintList1(List<Complaint> complaintList1) {
+        this.complaintList1 = complaintList1;
     }
 
     public Role getRole() {
