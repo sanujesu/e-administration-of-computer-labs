@@ -21,8 +21,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
+import org.primefaces.event.CloseEvent;
 import utilities.EConstant;
 
 /**
@@ -42,12 +44,15 @@ public class ComplaintMBean {
     private List<Complaint> lstInProgress = new ArrayList<Complaint>();
     private List<Complaint> lstVerify = new ArrayList<Complaint>();
     private List<Complaint> lstDone = new ArrayList<Complaint>();
+    private List<Complaint> lstComplaintAll = new ArrayList<Complaint>();
     private Map<String, List<Complaint>> mapListComplaint = new HashMap<String, List<Complaint>>();
     private Complaint selectedComplaint;
     private String currentUser;
     private List<String> users= new ArrayList<String>();
     public static Complaint tmpComplaint=new Complaint();
     public String newTitle, newDesc, newAssigner;
+    public String userLogin;
+
 
 
     /** Creates a new instance of ComplaintMBean */
@@ -96,7 +101,6 @@ public class ComplaintMBean {
         newTitle=selectedComplaint.getTitle();
         newDesc=selectedComplaint.getDescription();
         tmpComplaint=selectedComplaint;
-        //setCurrentUser(selectedComplaint.getEnduser1().getUserName());
     }
 
     public String getCurrentUser() {
@@ -122,11 +126,6 @@ public class ComplaintMBean {
 
     public void setNewAssigner(String newAssigner) {
         this.newAssigner = newAssigner;
-        if(tmpComplaint!=null){
-            Enduser end=new Enduser("002");
-            tmpComplaint.setEnduser1(end);
-            updateComplaint(tmpComplaint);
-        }
 
     }
 
@@ -151,19 +150,20 @@ public class ComplaintMBean {
         if(tmpComplaint!=null){
             tmpComplaint.setTitle(newTitle);
             updateComplaint(tmpComplaint);
+            
         }
     }
 
     @PostConstruct
     public void init() {
-
-        currentUser="con heo";
-        users=getUsersByRole("a");
-
-        this.lstToDo = this.getComplaintsByStatusID(EConstant.E_TODO_ID);
-        this.lstInProgress = this.getComplaintsByStatusID(EConstant.E_INPRO_ID);
-        this.lstVerify = this.getComplaintsByStatusID(EConstant.E_VERIFY_ID);
-        this.lstDone = this.getComplaintsByStatusID(EConstant.E_DONE_ID);
+        
+        users=getUsersByRole("1");
+        userLogin = "Paka";
+        lstComplaintAll = this.getComplaintsByUser(userLogin);
+        this.lstToDo = this.getComplaintsByStatusIDOfUserName(EConstant.E_TODO_ID, lstComplaintAll);
+        this.lstInProgress = this.getComplaintsByStatusIDOfUserName(EConstant.E_INPRO_ID, lstComplaintAll);
+        this.lstVerify = this.getComplaintsByStatusIDOfUserName(EConstant.E_VERIFY_ID, lstComplaintAll);
+        this.lstDone = this.getComplaintsByStatusIDOfUserName(EConstant.E_DONE_ID, lstComplaintAll);
 
         mapListComplaint.put(EConstant.E_TODO_ID, lstToDo);
         mapListComplaint.put(EConstant.E_INPRO_ID, lstInProgress);
@@ -189,17 +189,8 @@ public class ComplaintMBean {
         // return this.complaintSBean.getComplaintByID(id)
     }
 
-    public List<Complaint> getComplaintsByStatusID(String statusID) {
-        List<Complaint> lstComplaintReturn = new ArrayList<Complaint>();
-        List<Complaint> lstComplaint = getComplaints();
-        for (Complaint comp : lstComplaint) {
-            Short idObj = Short.parseShort(statusID);
-            Short idCurrent = comp.getStatus().getStatusID();
-            if (String.valueOf(idCurrent).equalsIgnoreCase(String.valueOf(idObj))) {
-                lstComplaintReturn.add(comp);
-            }
-        }
-        return lstComplaintReturn;
+    public List<Complaint> getComplaintsByStatusIDOfUserName(String statusID, List<Complaint> lstComplaint) {
+        return this.complaintSBean.getComplaintsByStatus(statusID, lstComplaint);
     }
 
     public void handleDrop() {
@@ -223,11 +214,11 @@ public class ComplaintMBean {
 
         //Refresh this page
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("./Complaint.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(EConstant.E_COMPLAINT_PAGE);
         } catch (IOException ex) {
             Logger.getLogger(ComplaintMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
+//        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Chuyển " + content + " từ " + source + " sang " + dest));
     }
 
     public void addComplaint(Complaint cmp) {
@@ -238,23 +229,38 @@ public class ComplaintMBean {
         this.complaintSBean.updateComplaint(cmp);
     }
     public List<String> getUsersByRole(String roleID){
+        List<Enduser> lstUser=this.endUserSBean.getUsersByRole(roleID);
         List<String> lstUsersName=new ArrayList<String>();
-        List<Enduser> lstUser=this.endUserSBean.getAll();
-        for(Enduser user : lstUser){
-            if(user!=null)
-                lstUsersName.add(user.getUserName());
+        if(lstUser.size()>0){
+            for(Enduser user : lstUser){
+                if(user!=null)
+                    lstUsersName.add(user.getUserName());
+            }
         }
         return lstUsersName;
     }
-
-    public void update(ActionEvent event){
-        String ab=event.getComponent().getClientId();
-        if(tmpComplaint!=null){
-            //tmpComplaint.getEnduser1().setUserName(currentUser);
+    public void updateAssigner(AjaxBehaviorEvent event) {
+        String name = (String) ((UIInput) event.getComponent()).getValue();
+        Enduser user=getUserByName(name);
+        if(user!=null && tmpComplaint!=null){
+            tmpComplaint.setEnduser1(user);
+            updateComplaint(tmpComplaint);
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR", "Assing complaint \"" + tmpComplaint.getComplaintID() + EConstant.E_SEPERATOR + tmpComplaint.getTitle() + "\" to " + tmpComplaint.getEnduser1().getUserName() + " succesfull!"));
+    }
+    public Enduser getUserByName(String name){
+        return endUserSBean.getUserByName(name);
+    }
+    public List<Complaint> getComplaintsByUser(String userName){
+        return this.complaintSBean.getComplaintsByUserName(userName);
+    }
+    public void handleCloseDialog(CloseEvent event){
+         try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(EConstant.E_COMPLAINT_PAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(ComplaintMBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void updateTitle(ActionEvent event){
-        String ab=event.getComponent().getClientId();
-        int a=2;
-    }
+
+
 }

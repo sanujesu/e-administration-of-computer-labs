@@ -5,6 +5,7 @@
 package ejb;
 
 import entity.Complaint;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -32,16 +33,31 @@ public class ComplaintSBean {
         return que.getResultList();
     }
 
-    public Complaint getComplaintByID(String id) {
-        Complaint comp = null;
-        Query que = em.createNamedQuery("Complaint.findByComplaintID");
-        try {
-            comp = (Complaint) que.getSingleResult();
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
+    public List<Complaint> getComplaintsByUserName(String userName) {
+        List<Complaint> lstComplaintsReturn=new ArrayList<Complaint>();
+        List<Complaint> lstComplaint=getAll();
+        if(lstComplaint.size()>0){
+            for (Complaint complaint : lstComplaint) {
+                String itemUserName = complaint.getEnduser1().getUserName().trim();
+                if(itemUserName.equalsIgnoreCase(userName))
+                    lstComplaintsReturn.add(complaint);
+            }
         }
-        return comp;
+        return lstComplaintsReturn;
     }
+     public List<Complaint> getComplaintsByStatus(String statusID,List<Complaint> lstComplaint){
+        List<Complaint> lstComplaintReturn = new ArrayList<Complaint>();
+        if(lstComplaint.size()>0){
+            for (Complaint comp : lstComplaint) {
+            Short idObjStatus = Short.parseShort(statusID);
+            Short idCurrentStatus = comp.getStatus().getStatusID();
+            if (String.valueOf(idCurrentStatus).equalsIgnoreCase(String.valueOf(idObjStatus))) {
+                lstComplaintReturn.add(comp);
+            }
+        }
+        }
+        return lstComplaintReturn;
+     }
 
     public void insertComplaint(Complaint comp) {
         em.persist(comp);

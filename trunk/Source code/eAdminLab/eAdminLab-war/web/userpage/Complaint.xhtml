@@ -84,7 +84,7 @@
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
                             <p:column style="border: chartreuse;border-width: thick">
-                                <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.description}" >
+                                <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.title}" >
                                     <!--                            <p:button value="detail"></p:button>-->
                                 </h:outputText>
                                 <p:draggable for="complaint" revert="true" scope="1"/>
@@ -105,7 +105,7 @@
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
                             <p:column>
-                                <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.description}"  ></h:outputText>
+                                <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.title}"  ></h:outputText>
                                 <p:draggable for="complaint" revert="true" scope="2"/>
                                 <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
                                     <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
@@ -124,7 +124,7 @@
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
                             <p:column>
-                                <h:outputText id="complaint" value="#{complaintVerify.complaintID}_#{complaintVerify.description}"  ></h:outputText>
+                                <h:outputText id="complaint" value="#{complaintVerify.complaintID}_#{complaintVerify.title}"  ></h:outputText>
                                 <p:draggable for="complaint" revert="true" scope="3"/>
                                 <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
                                     <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
@@ -141,7 +141,7 @@
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
                             <p:column>
-                                <h:outputText id="complaint" value="#{complaintDone.complaintID}_#{complaintDone.description}"  ></h:outputText>
+                                <h:outputText id="complaint" value="#{complaintDone.complaintID}_#{complaintDone.title}"  ></h:outputText>
                                 <p:draggable for="complaint" revert="true" scope="4"/>
                                 <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
                                     <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
@@ -173,10 +173,10 @@
                     <p:remoteCommand name="handleUpdate" update="growl " actionListener="#{complaintController.update}"></p:remoteCommand>
                 </h:form>
 
-                <p:dialog id="dialogId" modal="true" widgetVar="complaintDetail" header="#{complaintController.selectedComplaint.title}" showEffect="slide" hideEffect="explode">
+                <p:dialog id="dialogId" modal="true" widgetVar="complaintDetail" header="Complaint : #{complaintController.selectedComplaint.complaintID}_#{complaintController.selectedComplaint.title}" showEffect="slide" hideEffect="explode">
+                    <p:ajax event="close" listener="#{complaintController.handleCloseDialog}"/>
                     <p:outputPanel id="complaintDetail" layout="block">
-                        <h:form prependId="false">
-
+                        <h:form prependId="false">                        
                             <h:panelGrid  columns="2" cellpadding="5">
                                 <h:outputLabel for="compID" value="Complaint ID" />
                                 <h:outputText id="compID" value="#{complaintController.selectedComplaint.complaintID}" />
@@ -194,6 +194,7 @@
                                 <p:inplace id="selectableInplace" label="#{complaintController.newAssigner}" effectSpeed="fast" event="dblclick">
                                     <h:selectOneMenu>
                                         <f:selectItems value="#{complaintController.users}"></f:selectItems>
+                                        <f:ajax event="change" listener="#{complaintController.updateAssigner}" />
                                     </h:selectOneMenu>
                                 </p:inplace>
 
