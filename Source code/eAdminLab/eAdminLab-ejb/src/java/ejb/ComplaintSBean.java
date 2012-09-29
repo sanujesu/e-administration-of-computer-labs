@@ -20,9 +20,10 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class ComplaintSBean {
-
     @PersistenceContext(unitName = "eAdminLab-ejbPU")
     private EntityManager em;
+
+    
 
     public void persist(Object object) {
         em.persist(object);
@@ -73,5 +74,9 @@ public class ComplaintSBean {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
+    }
+
+    public void persist1(Object object) {
+        em.persist(object);
     }
 }

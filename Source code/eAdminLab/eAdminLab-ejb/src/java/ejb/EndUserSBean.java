@@ -82,4 +82,10 @@ public class EndUserSBean {
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    //ngoc phan
+    public List<Enduser> getAllIns() {
+        return em.createNamedQuery("Enduser.findIns").getResultList();
+        //return null;
+    }
 }
