@@ -95,7 +95,7 @@ public class EndUserMBean {
     }
     
     public void clickRegister(ActionEvent event){
-        newUser.setUserID("005");
+        newUser.setUserID("006");
         newUser.setRole(new Role(Short.parseShort("1")));
         this.endUserSBean.insert(newUser);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "INFOR","Register succesfull!"));
