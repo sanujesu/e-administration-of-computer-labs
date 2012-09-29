@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entity;
 
 import java.io.Serializable;
@@ -15,18 +16,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author NOAH
+ * @author Pakacoco
  */
 @Entity
 @Table(name = "DEPARTMENT", catalog = "eAdministration", schema = "dbo")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
     @NamedQuery(name = "Department.findByDepartmentID", query = "SELECT d FROM Department d WHERE d.departmentID = :departmentID"),
@@ -35,17 +31,13 @@ public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
     @Column(name = "departmentID", nullable = false, length = 15)
     private String departmentID;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "departmentName", nullable = false, length = 100)
     private String departmentName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-    private List<Classes> classesList;
+    private List<Class> classList;
 
     public Department() {
     }
@@ -75,13 +67,12 @@ public class Department implements Serializable {
         this.departmentName = departmentName;
     }
 
-    @XmlTransient
-    public List<Classes> getClassesList() {
-        return classesList;
+    public List<Class> getClassList() {
+        return classList;
     }
 
-    public void setClassesList(List<Classes> classesList) {
-        this.classesList = classesList;
+    public void setClassList(List<Class> classList) {
+        this.classList = classList;
     }
 
     @Override
@@ -106,7 +97,7 @@ public class Department implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Department[ departmentID=" + departmentID + " ]";
+        return "entity.Department[departmentID=" + departmentID + "]";
     }
-    
+
 }
