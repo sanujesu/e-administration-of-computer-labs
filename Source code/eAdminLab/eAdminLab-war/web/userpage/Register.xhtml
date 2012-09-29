@@ -16,33 +16,45 @@
                         <div class="post">
                             <h2 class="title">Register</h2>
                             <div class="story">
-                                <p:panelGrid columns="2" style="margin-top: 40px; margin-left: 80px">
-                                    <f:facet name="header">
-                                        Fill your information
-                                    </f:facet>
+                                <h:form id="dialog">
+                                        <p:panelGrid columns="2" style="margin-top: 40px; margin-left: 80px">
+                                            <f:facet name="header">
+                                                Fill your information
+                                            </f:facet>
 
-                                    <h:outputLabel for="username" value="Username : *" />
-                                    <p:inputText id="username" value="" label="username" />
+                                            <h:outputLabel for="username" value="Username : *" />
+                                            <p:inplace editor="true" id="username" >
+                                                <p:inputText value="#{endUserController.userName}" label="username" />
+                                            </p:inplace>
 
-                                    <h:outputLabel for="password" value="Password : *" />
-                                    <p:inputText id="password" value="" required="true" label="Password" maxlength="30"/>
+                                            <h:outputLabel for="password" value="Password : *" />
+                                            <p:inplace editor="true" id="password" >
+                                                <p:inputText value="#{endUserController.password}"  label="password" maxlength="30"/>
+                                            </p:inplace>
 
-                                    <h:outputLabel for="address" value="Address : *" />
-                                    <p:inputText id="address" value="" required="true" label="Address" maxlength="30"/>
+                                            <h:outputLabel for="address" value="Address : *" />
+                                            <p:inplace editor="true" id="address" >
+                                                <p:inputText value="#{endUserController.address}" label="Address" maxlength="30"/>
+                                            </p:inplace>
 
-                                    <h:outputLabel for="email" value="Email : *" />
-                                    <p:inputText id="email" value="" required="true" label="Email" maxlength="30"/>
+                                            <h:outputLabel for="email" value="Email : *" />
+                                            <p:inplace editor="true" id="email" >
+                                                <p:inputText value="#{endUserController.email}" label="Email" maxlength="30"/>
+                                            </p:inplace>
 
-                                    <h:outputLabel for="birthday" value="Birthday : *" />
-                                    <p:inputText id="birthday" value="" required="true" label="Birthday" maxlength="30"/>
+                                            <h:outputLabel for="birthday" value="Birthday : *" />
+                                            <p:inplace editor="true" id="ptCal">
+                                                <p:calendar value="#{endUserController.birthDay}" locale="pt" showButtonPanel="true" navigator="true" effect="drop" />
+                                            </p:inplace>
 
-                                    
+                                            <f:facet name="footer">
+                                                <p:commandButton process="@all" actionListener="#{endUserController.clickRegister}" value="Register" icon="ui-icon-check" style="margin:0px 0px 0px 30px">
 
-                                    <f:facet name="footer">
-                                        <p:commandButton type="button" value="Register" icon="ui-icon-check" style="margin:0px 0px 0px 30px"/>
-                                        <p:commandButton type="button" value="Cancel" icon="ui-icon-check" style="margin: 0px 0px 0px 20px"/>
-                                    </f:facet>
-                                </p:panelGrid>
+                                                </p:commandButton>
+                                                <p:commandButton type="button" value="Cancel" icon="ui-icon-check" style="margin: 0px 0px 0px 20px"/>
+                                            </f:facet>
+                                        </p:panelGrid>
+                                </h:form>
                             </div>
                         </div>
                     </div>

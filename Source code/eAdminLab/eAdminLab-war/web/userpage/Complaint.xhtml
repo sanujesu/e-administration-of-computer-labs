@@ -78,12 +78,12 @@
 
                 </script>
                 <h:panelGrid columns="4">
-                    <p:panel header="TODO">
+                    <p:panel header="TODO" style="min-height:500px">
                         <p:dataGrid id="todo" value="#{complaintController.lstToDo}" var="complaintToDo" columns="1"
                                     rows="6" paginator="true"
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
-                            <p:column style="border: chartreuse;border-width: thick">
+                            <p:column style="border: chartreuse;border-width: thick; min-height: 480px">
                                 <h:outputText id="complaint" value="#{complaintToDo.complaintID}_#{complaintToDo.title}" >
                                     <!--                            <p:button value="detail"></p:button>-->
                                 </h:outputText>
@@ -99,12 +99,12 @@
                         </p:dataGrid>
 
                     </p:panel>
-                    <p:panel header="IN PROGRESS">
+                    <p:panel header="IN PROGRESS" style="min-height:500px">
                         <p:dataGrid id="inPro" value="#{complaintController.lstInProgress}" var="complaintInPro" columns="1"
-                                    rows="6" paginator="true"
+                                    rows="15" paginator="true"
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
-                            <p:column>
+                            <p:column style="border: chartreuse;border-width: thick; min-height: 480px">
                                 <h:outputText id="complaint" value="#{complaintInPro.complaintID}_#{complaintInPro.title}"  ></h:outputText>
                                 <p:draggable for="complaint" revert="true" scope="2"/>
                                 <p:commandLink update=":dialogId" oncomplete="complaintDetail.show()" title="View Detail">
@@ -118,9 +118,9 @@
 
                     </p:panel>
 
-                    <p:panel header="VERIFY">
+                    <p:panel header="VERIFY" style="min-height:500px">
                         <p:dataGrid id="verify" value="#{complaintController.lstVerify}" var="complaintVerify" columns="1"
-                                    rows="6" paginator="true"
+                                    rows="15" paginator="true"
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
                             <p:column>
@@ -135,8 +135,8 @@
                         </p:dataGrid>
                     </p:panel>
 
-                    <p:panel header="DONE">
-                        <p:dataGrid id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1"
+                    <p:panel header="DONE" style="min-height:500px">
+                        <p:dataGrid  id="done" value="#{complaintController.lstDone}" var="complaintDone" columns="1"
                                     rows="6" paginator="true"
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     rowsPerPageTemplate="5,10,15">
