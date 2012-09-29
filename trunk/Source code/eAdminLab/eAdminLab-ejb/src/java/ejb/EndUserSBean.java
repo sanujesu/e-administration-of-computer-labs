@@ -73,6 +73,13 @@ public class EndUserSBean {
         }
         return lstUserRet;
     }
+    public void insert(Enduser user) {
+        try{
+        em.persist(user);
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+    }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
