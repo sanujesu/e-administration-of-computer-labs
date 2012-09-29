@@ -20,4 +20,5 @@ public class EConstant {
     public static String E_SEPERATOR = "_";
     public static String E_STRING_EMPTY = "";
     public static String E_COMPLAINT_PAGE = "./Complaint.xhtml";
+    public static String E_DEFAULT_INSTRUCTOR = "Paka";
 }

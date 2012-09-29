@@ -23,7 +23,7 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.servlet.http.HttpServletRequest;
+import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.DateSelectEvent;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
@@ -32,6 +32,7 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import utilities.EConstant;
 
 /**
  *
@@ -57,7 +58,10 @@ public class TimetableMbean {
     private Request req;
     private String titleReq;
     private String description;
+    private String defaultConstructor;
     private Enduser instructor;
+    private Timetable selectedTimeTable = new Timetable();
+    private Request selectedRequest = new Request();
 
     /**
      * Creates a new instance of TimetableMbean
@@ -76,21 +80,46 @@ public class TimetableMbean {
 
         lst = getAllTTB();
         lstInstructor = getAllIns();
-
+        setDefaultConstructor(EConstant.E_DEFAULT_INSTRUCTOR);
+       
         for (int i = 0; i < lst.size(); i++) {
             if (lst.get(i).getLabStatus().trim().equals("fix")) {
-                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() +" - "+lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime()));
+                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() + " - " + lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime()));
             } else if (lst.get(i).getLabStatus().trim().equals("free")) {
-                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() +" - "+lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime(), "free"));
+                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() + " - " + lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime(), "free"));
             } else if (lst.get(i).getLabStatus().trim().equals("pending")) {
-                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() +" - "+lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime(), "pen"));
+                eventModel.addEvent(new DefaultScheduleEvent(lst.get(i).getTimeTableID() + " - " + lst.get(i).getLab().getLabName() + " - " + lst.get(i).getClasses().getClassName(), lst.get(i).getStartTime(), lst.get(i).getEndTime(), "pen"));
             }
         }
+    }
+
+    public Request getSelectedRequest() {
+        return selectedRequest;
+    }
+
+    public void setSelectedRequest(Request selectedRequest) {
+        this.selectedRequest = selectedRequest;
+    }
+
+    public Timetable getSelectedTimeTable() {
+        return selectedTimeTable;
+    }
+
+    public void setSelectedTimeTable(Timetable selectedTimeTable) {
+        this.selectedTimeTable = selectedTimeTable;
     }
 
     public List<Timetable> getAllTTB() {
         return this.timeTableSBean.getAll();
 
+    }
+
+    public String getDefaultConstructor() {
+        return defaultConstructor;
+    }
+
+    public void setDefaultConstructor(String defaultConstructor) {
+        this.defaultConstructor = defaultConstructor;
     }
 
     public Timetable getTimeTBId(String id) {
@@ -107,7 +136,6 @@ public class TimetableMbean {
         // return this.complaintSBean.getComplaintByID(id)
     }
 
-    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Calendar addHours() {
         Calendar cld = Calendar.getInstance();
@@ -115,6 +143,7 @@ public class TimetableMbean {
         cld.add(Calendar.HOUR_OF_DAY, this.getStartHours());
         return cld;
     }
+
     public void addEvent(ActionEvent actionEvent) {
         eventModel.addEvent(new DefaultScheduleEvent(event.getTitle(), addHours().getTime(), addHours().getTime()));
     }
@@ -126,13 +155,12 @@ public class TimetableMbean {
         req.setTitle(getTitleReq());
         req.setDescription(getDescription());
         req.setTimetable(getTimeTBId(customizeTitle(event.getTitle().trim())));
-        //req.setEnduser(getInstructor());
-        req.setEnduser(new Enduser("001"));
-        req.setEnduser1(new Enduser("001"));
+        req.setEnduser(instructor);
+        req.setEnduser1(instructor);
         req.setStatusID(Boolean.FALSE);
         insertRequest(req);
         ////////////////////
-        eventModel.addEvent(new DefaultScheduleEvent(event.getTitle().trim(), addHours().getTime(), addHours().getTime(),"pen"));
+        eventModel.addEvent(new DefaultScheduleEvent(event.getTitle().trim(), addHours().getTime(), addHours().getTime(), "pen"));
         eventModel.deleteEvent(event);
         /////////////////
         Timetable ttb = getTimeTBId(customizeTitle(event.getTitle().trim()));
@@ -144,12 +172,18 @@ public class TimetableMbean {
 //        } catch (IOException ex) {
 //            Logger.getLogger(TimetableMbean.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
+
     }
 
     public void onEventSelect(ScheduleEntrySelectEvent selectEvent) {
         event = selectEvent.getScheduleEvent();
         this.setStartHours(event.getStartDate().getHours());
+        selectedTimeTable = getTimeTBId(customizeTitle(event.getTitle().trim()));
+        selectedRequest = getRequestFromTimeTableID(selectedTimeTable);
+        if(selectedRequest.getEnduser()!=null)
+            setDefaultConstructor(selectedRequest.getEnduser().getUserName());
+        else
+            setDefaultConstructor(EConstant.E_DEFAULT_INSTRUCTOR);
     }
 
     public void onDateSelect(DateSelectEvent selectEvent) {
@@ -199,26 +233,28 @@ public class TimetableMbean {
     }
     // xu ly su kien giao dien
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void updateTTB(Timetable ttb){
+
+    public void updateTTB(Timetable ttb) {
         this.timeTableSBean.updateTTB(ttb);
     }
-    
-    public void sendRequest() {
-//        System.out.println("zo send");
+
+//    public void sendRequest() {
+////        System.out.println("zo send");
+////        this.req = requestSBean.create();
+////        req.setTitle(getTitle());
+////        insertRequest(req);
+////        System.out.println("zosau khi goi insert");
 //        this.req = requestSBean.create();
-//        req.setTitle(getTitle());
+//        req = new Request();
+//        req.setRequestID("Req" + String.valueOf(requestSBean.listAll().size() + 1));
+//        req.setTitle(getTitleReq());
+//        req.setDescription(getDescription());
+//        req.setTimetable(getTimeTBId(event.getTitle().trim()));
+//        req.setEnduser(instructor);
+//        req.setEnduser1(instructor);
 //        insertRequest(req);
-//        System.out.println("zosau khi goi insert");
-        this.req = requestSBean.create();
-        //req = new Request();
-        req.setRequestID("Req" + String.valueOf(requestSBean.listAll().size() + 1));
-        req.setTitle(getTitleReq());
-        req.setDescription(getDescription());
-        req.setTimetable(getTimeTBId(event.getTitle().trim()));
-
-        insertRequest(req);
-    }
-
+//    }
+//
     public void insertRequest(Request req) {
         requestSBean.insertRequest(req);
     }
@@ -237,19 +273,21 @@ public class TimetableMbean {
         }
         return lstInsName;
     }
-    
-    public String customizeTitle(String str){
-        return str.substring(0,str.indexOf("-")).trim();
+
+    public String customizeTitle(String str) {
+        return str.substring(0, str.indexOf("-")).trim();
     }
-    
+
     public void getInstructor(AjaxBehaviorEvent event) {
         String name = (String) ((UIInput) event.getComponent()).getValue();
         instructor = getUserByName(name);
     }
-    public Enduser getUserByName(String name){
+
+    public Enduser getUserByName(String name) {
         return this.enduserSBean.getUserByName(name);
     }
     //Getter and Setter
+
     public List<Timetable> getAllTB() {
         return getTimeTableSBean().getAll();
     }
@@ -404,11 +442,15 @@ public class TimetableMbean {
     public void setReq(Request req) {
         this.req = req;
     }
+
     /**
      * @return the description
      */
     public String getDescription() {
-        return description;
+        if(selectedRequest!=null)
+            return selectedRequest.getDescription();
+        else
+            return "";
     }
 
     /**
@@ -422,7 +464,10 @@ public class TimetableMbean {
      * @return the titleReq
      */
     public String getTitleReq() {
-        return titleReq;
+        if(selectedRequest!=null)
+            return selectedRequest.getTitle();
+        else
+            return "";
     }
 
     /**
@@ -444,5 +489,27 @@ public class TimetableMbean {
      */
     public void setInstructor(Enduser instructor) {
         this.instructor = instructor;
+    }
+
+    public void valueChange(ValueChangeEvent event) {
+        String name = (String) ((UIInput) event.getComponent()).getValue();
+        instructor = getUserByName(name);
+        req.setEnduser(instructor);
+    }
+
+    public Request getRequestFromTimeTableID(Timetable timeTable) {
+        Request ret=new Request();
+        String timeTableID=timeTable.getTimeTableID().trim();
+        List<Request> lstRequest=this.requestSBean.listAll();
+        if(lstRequest.size()>0){
+            for (Request request : lstRequest) {
+                String itemTimeTableID=request.getTimetable().getTimeTableID().trim();
+                if(timeTableID.equalsIgnoreCase(itemTimeTableID)){
+                    ret=request;
+                    break;
+                }
+            }
+        }
+        return ret;
     }
 }
