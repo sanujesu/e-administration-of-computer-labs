@@ -35,7 +35,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Enduser.findByPassword", query = "SELECT e FROM Enduser e WHERE e.password = :password"),
     @NamedQuery(name = "Enduser.findByAddress", query = "SELECT e FROM Enduser e WHERE e.address = :address"),
     @NamedQuery(name = "Enduser.findByEmail", query = "SELECT e FROM Enduser e WHERE e.email = :email"),
-    @NamedQuery(name = "Enduser.findByBirthday", query = "SELECT e FROM Enduser e WHERE e.birthday = :birthday")})
+    @NamedQuery(name = "Enduser.findByBirthday", query = "SELECT e FROM Enduser e WHERE e.birthday = :birthday"),
+    @NamedQuery(name = "Enduser.findIns", query = "SELECT e FROM Enduser e WHERE e.role.roleID = '3'")})
 public class Enduser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
