@@ -43,9 +43,9 @@
                 <h:panelGrid id="eventDetails" columns="2">
                     
                     <h:outputLabel for="titleReq" value="Title:" />
-                    <p:inputText id="titleReq" value="#{timetableMbean.titleReq}" required="true"/>
+                    <p:inputText id="titleReq" value="#{timetableMbean.selectedRequest.title}" required="true"/>
                     <h:outputLabel for="desc" value="Description:" />
-                    <p:inputText id="desc" value="#{timetableMbean.description}" required="true"/>
+                    <p:inputText id="desc" value="#{timetableMbean.selectedRequest.description}" required="true"/>
                     <h:outputLabel for="from" value="From:" />
                     <p:inputMask id="from" value="#{timetableMbean.event.startDate}" mask="99/99/9999">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -55,13 +55,12 @@
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </p:inputMask>
                     <h:outputLabel for="instructor" value="Intructor" />
-                    <p:inplace id="instructor" label="Click here to send instructor" effectSpeed="fast" event="dblclick">
-                        <h:selectOneMenu>
+                    <p:inplace id="instructor" label="#{timetableMbean.defaultConstructor}" effectSpeed="fast" event="dblclick">
+                        <h:selectOneMenu  valueChangeListener="#{timetableMbean.valueChange}">
                             <f:selectItems value="#{timetableMbean.lstInstructor}"></f:selectItems>
                             <f:ajax event="change" listener="#{timetableMbean.getInstructor}" />
                         </h:selectOneMenu>
                     </p:inplace>
-
 
 
                     <p:commandButton value="Send Request" actionListener="#{timetableMbean.sendEvent}" oncomplete="myschedule.update();eventDialog.hide();"/>
