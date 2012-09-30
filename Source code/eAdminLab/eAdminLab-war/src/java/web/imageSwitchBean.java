@@ -15,17 +15,16 @@ import javax.faces.bean.ManagedBean;
  * @author dell
  */
 @ManagedBean(name="imageSwitchBean")
-public class imageSwitchBean {
+public class ImageSwitchBean {
 
     private List<String> images;
 
-    public imageSwitchBean() {
+    public ImageSwitchBean() {
         images = new ArrayList<String>();
         images.add("op5.png");
         images.add("op6.png");
         images.add("op7.png");
         images.add("op8.png");
-        //images.add("op9.png");
     }
 
     public List<String> getImages() {
