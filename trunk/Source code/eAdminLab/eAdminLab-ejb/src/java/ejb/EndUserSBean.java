@@ -88,4 +88,15 @@ public class EndUserSBean {
         return em.createNamedQuery("Enduser.findIns").getResultList();
         //return null;
     }
+
+    public Enduser loginSystem(String user, String pass) {
+       Query q = em.createNamedQuery("Enduser.findByLogin");
+        q.setParameter("username", user);
+        q.setParameter("password", pass);
+        try {
+           return (Enduser) q.getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 }

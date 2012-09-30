@@ -29,19 +29,19 @@
                                     You can edit your profile
                                 </f:facet>
                                 <h:outputLabel for="username" value="Username : *" />
-                                <p:inputText id="username" value="" label="username" />
+                                <p:inputText id="username" value="#{endUserController.currentUser.userName}" label="username" />
 
                                 <h:outputLabel for="password" value="Password : *" />
-                                <p:inputText id="password" value="" required="true" label="Password" maxlength="30"/>
+                                <p:inputText id="password" value="#{endUserController.currentUser.password}" required="true" label="Password" maxlength="30"/>
 
                                 <h:outputLabel for="address" value="Address : *" />
-                                <p:inputText id="address" value="" required="true" label="Address" maxlength="30"/>
+                                <p:inputText id="address" value="#{endUserController.currentUser.address}" required="true" label="Address" maxlength="30"/>
 
                                 <h:outputLabel for="email" value="Email : *" />
-                                <p:inputText id="email" value="" required="true" label="Email" maxlength="30"/>
+                                <p:inputText id="email" value="#{endUserController.currentUser.email}" required="true" label="Email" maxlength="30"/>
 
                                 <h:outputLabel for="birthday" value="Birthday : *" />
-                                <p:inputText id="birthday" value="" required="true" label="Birthday" maxlength="30"/>
+                                <p:inputText id="birthday" value="#{endUserController.currentUser.birthday}" required="true" label="Birthday" maxlength="30"/>
 
 
 

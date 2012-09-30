@@ -97,6 +97,17 @@ a:hover {
     font: normal 1.6em Georgia, "Times New Roman", Times, serif;
     color: #E1E9E2;
 }
+#menu div {
+    display: block;
+    /*width: 108px;
+    height: 36px;*/
+    padding: 20px 20px 0 20px;
+    background: none;
+    letter-spacing: -1px;
+    font: normal 1.6em Georgia, "Times New Roman", Times, serif;
+    color: #E1E9E2;
+}
+
 
 #menu a:hover {
     border-bottom: 4px solid #5A7C50;

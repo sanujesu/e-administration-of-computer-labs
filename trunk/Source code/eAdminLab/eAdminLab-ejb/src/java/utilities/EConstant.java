@@ -21,4 +21,10 @@ public class EConstant {
     public static String E_STRING_EMPTY = "";
     public static String E_COMPLAINT_PAGE = "./Complaint.xhtml";
     public static String E_DEFAULT_INSTRUCTOR = "Paka";
+    public static String E_TEMP_FILE = "/temp.dat";
+    public static String E_REMINDER_USER_NAME = "Enter user name";
+    public static String E_REMINDER_PASSWORD = "Enter password";
+    public static String E_REMINDER_ADDRESS = "Enter address";
+    public static String E_REMINDER_EMAIL = "Enter email";
+    public static Short E_DEFAULT_ROLE= 4 ;
 }
